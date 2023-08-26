@@ -1,27 +1,25 @@
-# LazylessV2
+# Lazyless - Personal Management app
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
+## Description
+Sometimes I feel not so productive and time flies so fast. I want to know how I spend my time and how I can improve my productivity. So I decided to create this app to help me or anyone who faces similar situation to deal keep track of their schedule.
 
-## Development server
+This project is created to improve my time management skill and to learn Angular.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
+- [ ] Log in/log out
+- [ ] Create a task
+- [ ] Edit a task
+- [ ] Delete a task
+- [ ] Mark a task as done
+- [ ] Mark a task as undone
+- [ ] Enter start and end time for a task
+- [ ] Add task to a category
+- [ ] Display graph to show time used for different categories
 
-## Code scaffolding
+## Technologies
+- Angular
+- MongoDB
+- Tailwind CSS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Others
+- [Color Palette](https://coolors.co/0b132b-1c2541-3a506b-5bc0be-6fffe9)
