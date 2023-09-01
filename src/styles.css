@@ -2,5 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+    --primary: '#3A506b';
+    --secondary: '#5BC0BE';
+    --majorText: '#6FFFE9';
+    --quaternary: '#1C2541';
+    --quinary: '#0B132B';
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
