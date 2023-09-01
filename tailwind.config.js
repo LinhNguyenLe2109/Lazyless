@@ -6,11 +6,11 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        primary: '#3A506b',
-        secondary: '#5BC0BE',
-        majorText: '#6FFFE9',
-        quaternary: '#1C2541',
-        quinary: '#0B132B',
+        primary: 'var(--primary)',
+        secondary: 'var(--secondary)',
+        majorText: 'var(--majorText)',
+        quaternary: 'var(--quaternary)',
+        quinary: 'var(--quinary)',
       }
     },
   },
