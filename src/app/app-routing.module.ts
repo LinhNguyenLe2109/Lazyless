@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component'
+import { DailyTaskComponent } from './daily-task/daily-task.component';
 
 const routes: Routes = [
   {
@@ -8,6 +9,11 @@ const routes: Routes = [
     component: HomeComponent,
     title: 'Home page'
   },
+  {
+    path: 'dailyTask',
+    component: DailyTaskComponent,
+    title: 'Daily Task'
+  }
 ];
 
 @NgModule({
