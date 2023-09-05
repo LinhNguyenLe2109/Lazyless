@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./daily-task.component.css']
 })
 export class DailyTaskComponent {
-
+  currentDate = new Date();
+  // update this one later with uuid
+  sessionId = '1234567890 (to be updated)';
 }

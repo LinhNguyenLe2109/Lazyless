@@ -1,0 +1,34 @@
+.colHead{
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    background-color:  var(--primary);
+    padding: 5px;
+    margin: 5px;
+    color:  var(--majorText);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.rowHead{
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: var(--primary);
+    padding: 5px;
+    margin: 5px;
+    color: var(--majorText);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%; /* Make the table take up the full width of its container */
+}
+
+th, td {
+    border: 1px solid var(--secondary); /* Add a 1px solid black border to each cell */
+    padding: 8px; /* Add some padding for spacing within cells */
+    text-align: center; /* Center-align text in cells */
+}

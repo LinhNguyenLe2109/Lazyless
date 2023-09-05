@@ -4,7 +4,34 @@
         <h1 class="text-6xl font-bold text-majorText">Daily Task Table</h1>
         <p class="text-secondary mt-3 italic text-lg">A table that helps you categorize tasks in one day to know which task you should focus on first and keep track of all of them</p>
     </div>
-    <div id="tableSection">
-
+    <div id="content" class="mt-14 w-full">
+        <div class="mx-16 mb-4 text-xl font-medium flex justify-around">
+            <p>Date: {{currentDate | date}}</p>
+            <p>ID: {{sessionId}}</p>
+        </div>
+        <div id="tableSection" class="flex justify-center">
+            <table class="table-auto">
+                <thead>
+                    <tr>
+                        <th class="rowHead"></th>
+                        <th scope="col" class="rowHead">Important</th>
+                        <th scope="col" class="rowHead">Non-important</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row" class="colHead">Urgent</td>
+                        <td>Malcolm Lockyer</td>
+                        <td>1961</td>
+                    </tr>
+                    <tr>
+                        <td scope="row" class="colHead">Non-urgent</td>
+                        <td>The Eagles</td>
+                        <td>1972</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </section>
