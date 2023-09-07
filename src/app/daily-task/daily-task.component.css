@@ -31,4 +31,6 @@ th, td {
     border: 1px solid var(--secondary); /* Add a 1px solid black border to each cell */
     padding: 8px; /* Add some padding for spacing within cells */
     text-align: center; /* Center-align text in cells */
+    /* idk how it works, but it works */
+    max-width: 2px; /* Add a maximum width for cells */
 }
