@@ -1,0 +1,42 @@
+button{
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: var(--majorText);
+    cursor: pointer;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover{
+    background-color: var(--secondary);
+    color: #fff;
+}
+
+#doneButton{
+    background-color: transparent;
+    color: #00be10;
+    border: 1px solid #00be10;
+}
+
+#doneButton:hover{
+    background-color: #00be10;
+    color: #fff;
+}
+
+#removeButton{
+    background-color: transparent;
+    color: #ee0000;
+    border: 1px solid #ee0000;
+}
+
+#removeButton:hover{
+    background-color: #ee0000;
+    color: #fff;
+}
+
+
