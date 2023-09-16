@@ -3,4 +3,6 @@
     font-weight: bold;
     font-size: 5rem;
     color: var(--primary);
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
