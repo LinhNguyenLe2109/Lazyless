@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { DailyTaskComponent } from './daily-task/daily-task.component';
 import { DailyTaskCellModule } from './daily-task-cell/daily-task-cell.module';
+import { DailyTaskService } from './daily-task.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { DailyTaskCellModule } from './daily-task-cell/daily-task-cell.module';
     BrowserAnimationsModule,
     DailyTaskCellModule,
   ],
-  providers: [],
+  providers: [DailyTaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
