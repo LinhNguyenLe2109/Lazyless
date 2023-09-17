@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-content-cell',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./content-cell.component.css']
 })
 export class ContentCellComponent {
-
+  @Input() public type !: string;
+  ngOnInit() {
+    console.log(this.type);
+  }
 }
