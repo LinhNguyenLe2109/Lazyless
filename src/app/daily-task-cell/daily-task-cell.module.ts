@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ContentCellComponent } from './content-cell/content-cell.component';
 import { TaskContentComponent } from './task-content/task-content.component';
 import { TaskInputComponent } from './task-input/task-input.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [ContentCellComponent, TaskContentComponent, TaskInputComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
   ],
   exports: [
     ContentCellComponent
