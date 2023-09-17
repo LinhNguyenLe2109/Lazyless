@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-task-input',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./task-input.component.css']
 })
 export class TaskInputComponent {
-
+  public task: string;
+  constructor() {
+    this.task = "";
+   }
+  addTask(){
+    console.log(this.task);
+  }
 }
