@@ -1,13 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Inject } from '@angular/core';
+import { DailyTaskService } from 'src/app/daily-task.service';
+import { Task } from 'src/app/interface/task';
 
 @Component({
   selector: 'app-content-cell',
   templateUrl: './content-cell.component.html',
-  styleUrls: ['./content-cell.component.css']
+  styleUrls: ['./content-cell.component.css'],
 })
 export class ContentCellComponent {
-  @Input() public type !: string;
+  public taskList: Task[] = [];
+  @Input() public type!: string;
+  constructor(private dailyTaskService: DailyTaskService) {}
   ngOnInit() {
-    console.log(this.type);
+    this.taskList = this.dailyTaskService
+      .getTaskList()
+      .filter((x) => x.type === this.type);
   }
 }

@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-
-interface Task {
-  id: number;
-  task: string;
-  type: string;
-}
+import { Task } from './interface/task';
 
 @Injectable({
   providedIn: 'root',

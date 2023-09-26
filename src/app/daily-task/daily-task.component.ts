@@ -14,7 +14,7 @@ export class DailyTaskComponent {
   NUNI :string;
   UNI: string;
   constructor() { 
-    this.UI = 'UI';
+    this.UI = 'U-I';
     this.NUI = 'NU-I';
     this.NUNI = 'NU-NI';
     this.UNI = 'U-NI';
