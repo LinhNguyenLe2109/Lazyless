@@ -1,7 +1,7 @@
 <div [id]="task.id" class="flex justify-between mx-4 mb-4">
-    <p>{{task.task}}</p>
-    <div id="optionList" class="flex">
-        <button id="doneButton">Done</button>
-        <button id="removeButton">Remove</button>
-    </div>
+  <p [ngClass]="{ 'line-through': isDone }">{{ task.task }}</p>
+  <div id="optionList" class="flex">
+    <button id="doneButton" (click)="doneButtonHandler()">Done</button>
+    <button id="removeButton">Remove</button>
+  </div>
 </div>
