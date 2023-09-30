@@ -2,6 +2,6 @@
   <p [ngClass]="{ 'line-through': isDone }">{{ task.task }}</p>
   <div id="optionList" class="flex">
     <button id="doneButton" (click)="doneButtonHandler()">Done</button>
-    <button id="removeButton">Remove</button>
+    <button id="removeButton" (click)="removeButtonHandler()">Remove</button>
   </div>
 </div>
