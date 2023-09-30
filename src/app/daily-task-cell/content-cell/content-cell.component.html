@@ -1,4 +1,7 @@
 <div id="container">
-    <app-task-content *ngFor="let task of taskList" [task] = "task" ></app-task-content>
-    <app-task-input></app-task-input>
+  <app-task-content
+    *ngFor="let task of taskList"
+    [task]="task"
+  ></app-task-content>
+  <app-task-input [type]="type"></app-task-input>
 </div>

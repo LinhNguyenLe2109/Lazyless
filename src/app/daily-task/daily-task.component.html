@@ -1,37 +1,38 @@
-
 <section class="h-screen w-full text-white pt-10">
-    <div id="introduction" class="text-center">
-        <h1 class="text-6xl font-bold text-majorText">Daily Task Table</h1>
-        <p class="text-secondary mt-3 italic text-lg">A table that helps you categorize tasks in one day to know which task you should focus on first and keep track of all of them</p>
+  <div id="introduction" class="text-center">
+    <h1 class="text-6xl font-bold text-majorText">Daily Task Table</h1>
+    <p class="text-secondary mt-3 italic text-lg">
+      A table that helps you categorize tasks in one day to know which task you
+      should focus on first and keep track of all of them
+    </p>
+  </div>
+  <div id="content" class="mt-14 w-full">
+    <div class="mx-16 mb-4 text-xl font-medium flex justify-around">
+      <p>Date: {{ currentDate | date }}</p>
+      <p>ID: {{ sessionId }}</p>
     </div>
-    <div id="content" class="mt-14 w-full">
-        <div class="mx-16 mb-4 text-xl font-medium flex justify-around">
-            <p>Date: {{currentDate | date}}</p>
-            <p>ID: {{sessionId}}</p>
-        </div>
-        <div id="tableSection" class="flex justify-center">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="rowHead"></th>
-                        <th scope="col" class="rowHead">Important</th>
-                        <th scope="col" class="rowHead">Non-important</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row" class="colHead">Urgent</td>
-                        <td><app-content-cell [type]='UI'></app-content-cell></td>
-                        <td><app-content-cell [type]='UNI'></app-content-cell></td>
-                    </tr>
-                    <tr>
-                        <td scope="row" class="colHead">Non-urgent</td>
-                        <td><app-content-cell [type]='NUI'></app-content-cell></td>
-                        <td><app-content-cell [type]='NUNI'></app-content-cell></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div id="tableSection" class="flex justify-center">
+      <table>
+        <thead>
+          <tr>
+            <th class="rowHead"></th>
+            <th scope="col" class="rowHead">Important</th>
+            <th scope="col" class="rowHead">Non-important</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row" class="colHead">Urgent</td>
+            <td><app-content-cell [type]="UI"></app-content-cell></td>
+            <td><app-content-cell [type]="UNI"></app-content-cell></td>
+          </tr>
+          <tr>
+            <td scope="row" class="colHead">Non-urgent</td>
+            <td><app-content-cell [type]="NUI"></app-content-cell></td>
+            <td><app-content-cell [type]="NUNI"></app-content-cell></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
+  </div>
 </section>

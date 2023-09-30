@@ -1,4 +1,10 @@
-import { Component, Input, Inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  Inject,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { DailyTaskService } from 'src/app/daily-task.service';
 import { Task } from 'src/app/interface/task';
 
@@ -12,8 +18,13 @@ export class ContentCellComponent {
   @Input() public type!: string;
   constructor(private dailyTaskService: DailyTaskService) {}
   ngOnInit() {
-    this.taskList = this.dailyTaskService
-      .getTaskList()
-      .filter((x) => x.type === this.type);
+    // Subscribe to the taskList observable to get the whole list of tasks
+    this.dailyTaskService.taskList$.subscribe((allTasks) => {
+      this.taskList = allTasks.filter((x) => x.type == this.type);
+    });
+  }
+
+  getParent() {
+    return this;
   }
 }
