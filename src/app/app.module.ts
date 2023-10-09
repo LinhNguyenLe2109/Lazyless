@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { DailyTaskComponent } from './daily-task/daily-task.component';
 import { DailyTaskCellModule } from './daily-task-cell/daily-task-cell.module';
 import { DailyTaskService } from './daily-task.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DailyTaskService } from './daily-task.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     DailyTaskCellModule,
+    HttpClientModule
   ],
   providers: [DailyTaskService],
   bootstrap: [AppComponent]

@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { Task } from './interface/task';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -37,28 +39,52 @@ export class DailyTaskService {
     ],
   };
   taskList: Task[];
+  apiData: Task[] = [];
   newUnassignedId: number = -1;
   // Create a BehaviorSubject to store the task list
   taskListSubject = new BehaviorSubject<Task[]>([]);
   // Expose the observable$ part of the taskList subject (read only stream)
   taskList$: Observable<Task[]> = this.taskListSubject.asObservable();
-  constructor() {
+  constructor(private http: HttpClient) {
+    // get test data
     this.taskList = this.testData.data;
     this.newUnassignedId = Math.max(...this.taskList.map((x) => x.id));
-    this.taskListSubject.next(this.taskList);
+    // this.taskListSubject.next(this.taskList);
+    // get data from url
+    this.fetchTaskList();
+    this.taskList$.subscribe((data) => {
+      this.apiData = data;
+    });
+  }
+
+  private async fetchTaskList() {
+    await this.http.get(environment.apiUrl).subscribe((data) => {
+      console.log(data);
+      this.taskListSubject.next(data as Task[]);
+    });
   }
 
   getTaskList() {
-    return this.taskList;
+    return this.apiData;
+    // return this.taskList;
   }
 
-  addTask(task: string, type: string) {
-    this.taskList.push({
-      id: ++this.newUnassignedId,
-      task: task,
-      type: type,
+  async addTask(task: string, type: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
     });
-    this.taskListSubject.next(this.taskList);
+
+    const body = {
+      taskDescription: task,
+      taskType: type,
+    };
+
+    const response = await this.http.post(
+      environment.apiUrl + '/addTask',
+      body,
+      { headers: headers }
+    );
+    this.fetchTaskList();
   }
 
   removeTask(id: number) {

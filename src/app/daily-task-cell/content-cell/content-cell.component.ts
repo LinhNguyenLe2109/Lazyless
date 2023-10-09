@@ -20,8 +20,13 @@ export class ContentCellComponent {
   ngOnInit() {
     // Subscribe to the taskList observable to get the whole list of tasks
     this.dailyTaskService.taskList$.subscribe((allTasks) => {
-      this.taskList = allTasks.filter((x) => x.type == this.type);
+      if (allTasks.length > 0) {
+        this.taskList = allTasks.filter((x) => x.taskType == this.type);
+      } else {
+        this.taskList = [];
+      }
     });
+    console.log(this.taskList);
   }
 
   getParent() {
