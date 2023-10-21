@@ -10,7 +10,7 @@ import { DailyTaskComponent } from './daily-task/daily-task.component';
 import { DailyTaskCellModule } from './daily-task/daily-task-cell/daily-task-cell.module';
 import { DailyTaskService } from './services/daily-task.service';
 import { HttpClientModule } from '@angular/common/http';
-import { DailyTableComponent } from './daily-table/daily-table.component';
+import { DailyTableModule } from './daily-table/daily-table.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { DailyTableComponent } from './daily-table/daily-table.component';
     NavBarComponent,
     HomeComponent,
     DailyTaskComponent,
-    DailyTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +25,7 @@ import { DailyTableComponent } from './daily-table/daily-table.component';
     BrowserAnimationsModule,
     DailyTaskCellModule,
     HttpClientModule,
+    DailyTableModule
   ],
   providers: [DailyTaskService],
   bootstrap: [AppComponent],

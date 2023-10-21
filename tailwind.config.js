@@ -8,9 +8,9 @@ module.exports = {
       colors:{
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
-        majorText: 'var(--majorText)',
-        quaternary: 'var(--quaternary)',
-        quinary: 'var(--quinary)',
+        third: 'var(--third)',
+        quaternary: 'var(--forth)',
+        quinary: 'var(--fifth)',
       }
     },
   },

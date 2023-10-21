@@ -3,7 +3,7 @@ button{
     padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: var(--majorText);
+    background-color: var(--third);
     cursor: pointer;
     outline: none;
     font-size: 1rem;
