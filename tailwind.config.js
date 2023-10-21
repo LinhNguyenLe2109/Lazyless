@@ -9,8 +9,8 @@ module.exports = {
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         third: 'var(--third)',
-        quaternary: 'var(--forth)',
-        quinary: 'var(--fifth)',
+        forth: 'var(--forth)',
+        fifth: 'var(--fifth)',
       }
     },
   },
