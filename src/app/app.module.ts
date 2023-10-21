@@ -10,7 +10,6 @@ import { DailyTaskComponent } from './daily-task/daily-task.component';
 import { DailyTaskCellModule } from './daily-task/daily-task-cell/daily-task-cell.module';
 import { DailyTaskService } from './services/daily-task.service';
 import { HttpClientModule } from '@angular/common/http';
-import { DailyTableService } from './services/daily-table.service';
 import { DailyTableComponent } from './daily-table/daily-table.component';
 
 @NgModule({
@@ -28,7 +27,7 @@ import { DailyTableComponent } from './daily-table/daily-table.component';
     DailyTaskCellModule,
     HttpClientModule,
   ],
-  providers: [DailyTaskService, DailyTableService],
+  providers: [DailyTaskService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
