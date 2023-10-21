@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DailyTaskService } from 'src/app/daily-task.service';
+import { DailyTaskService } from 'src/app/services/daily-task.service';
 import { ContentCellComponent } from '../content-cell/content-cell.component';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DailyTaskService } from 'src/app/daily-task.service';
+import { DailyTaskService } from 'src/app/services/daily-task.service';
 import { Task } from 'src/app/interface/task';
 
 @Component({
@@ -12,10 +12,13 @@ export class TaskContentComponent {
   public isDone: boolean = false;
   constructor(private dailyTaskService: DailyTaskService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isDone = this.task.completed;
+  }
 
   doneButtonHandler(): void {
     this.isDone = !this.isDone;
+    this.dailyTaskService.updateTaskStatus(this.task.id, this.isDone);
   }
 
   removeButtonHandler(): void {

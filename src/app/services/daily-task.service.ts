@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Injectable } from '@angular/core';
-import { Task } from './interface/task';
+import { Task } from '../interface/task';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -8,37 +8,6 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class DailyTaskService {
-  testData: any = {
-    userId: 1,
-    data: [
-      {
-        id: 1,
-        task: 'Task 1',
-        type: 'U-I',
-      },
-      {
-        id: 2,
-        task: 'Task 2',
-        type: 'U-I',
-      },
-      {
-        id: 3,
-        task: 'Task 3',
-        type: 'NU-I',
-      },
-      {
-        id: 4,
-        task: 'Task 4',
-        type: 'NU-NI',
-      },
-      {
-        id: 5,
-        task: 'Task 5',
-        type: 'U-NI',
-      },
-    ],
-  };
-  taskList: Task[];
   apiData: Task[] = [];
   newUnassignedId: number = -1;
   // Create a BehaviorSubject to store the task list
@@ -46,10 +15,6 @@ export class DailyTaskService {
   // Expose the observable$ part of the taskList subject (read only stream)
   taskList$: Observable<Task[]> = this.taskListSubject.asObservable();
   constructor(private http: HttpClient) {
-    // get test data
-    this.taskList = this.testData.data;
-    this.newUnassignedId = Math.max(...this.taskList.map((x) => x.id));
-    // this.taskListSubject.next(this.taskList);
     // get data from url
     this.fetchTaskList();
     this.taskList$.subscribe((data) => {
@@ -66,7 +31,6 @@ export class DailyTaskService {
 
   getTaskList() {
     return this.apiData;
-    // return this.taskList;
   }
 
   async addTask(task: string, type: string) {
@@ -84,15 +48,42 @@ export class DailyTaskService {
       body,
       { headers: headers }
     );
-    this.fetchTaskList();
+    // you need to subscribe to the response to initialize the call process
+    response.subscribe(async (data) => {
+      await this.fetchTaskList();
+    });
   }
 
-  removeTask(id: number) {
-    this.taskList = this.taskList.filter((x) => x.id !== id);
-    this.taskListSubject.next(this.taskList);
+  removeTask(id: string) {
+    // this.taskList = this.taskList.filter((x) => x.id !== id);
+    // this.taskListSubject.next(this.taskList);
+    const response = this.http.delete(environment.apiUrl + '/deleteTask/' + id);
+    response.subscribe(async (data) => {
+      await this.fetchTaskList();
+    });
   }
 
-  getUserID() {
-    return this.testData.userId;
+  // getUserID() {
+  //   return this.testData.userId;
+  // }
+
+  updateTaskStatus(taskID: string, completed: boolean) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    const body = {
+      completed: completed,
+    };
+
+    console.log(body);
+
+    const response = this.http.put(
+      environment.apiUrl + '/updateTask/' + taskID,
+      body,
+      { headers: headers }
+    );
+    response.subscribe(async (data) => {
+      await this.fetchTaskList();
+    });
   }
 }

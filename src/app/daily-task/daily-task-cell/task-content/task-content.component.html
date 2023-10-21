@@ -1,5 +1,5 @@
-<div [id]="task.id" class="flex justify-between mx-4 mb-4">
-  <p [ngClass]="{ 'line-through': isDone }">{{ task.taskDescription }}</p>
+<div [id]="task.id" class="flex justify-between mx-4 my-3 items-center">
+  <p class="px-2 py-1" [ngClass]="{ 'line-through bg-green-600 text-white rounded-md': isDone }">{{ task.taskDescription }}</p>
   <div id="optionList" class="flex">
     <button id="doneButton" (click)="doneButtonHandler()">Done</button>
     <button id="removeButton" (click)="removeButtonHandler()">Remove</button>

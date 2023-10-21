@@ -5,7 +5,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core';
-import { DailyTaskService } from 'src/app/daily-task.service';
+import { DailyTaskService } from 'src/app/services/daily-task.service';
 import { Task } from 'src/app/interface/task';
 
 @Component({
