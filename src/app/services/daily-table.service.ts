@@ -8,23 +8,37 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class DailyTableService {
-  tableList: DailyTable[] = [];
   dailyTableURL: string;
+  tableList: DailyTable[] = [];
   dailyTableSubject = new BehaviorSubject<DailyTable[]>([]);
   tableList$ = this.dailyTableSubject.asObservable();
+  tableNum: number = 0;
+  tableNumSubject = new BehaviorSubject<number>(0);
+  tableNum$ = this.tableNumSubject.asObservable();
   constructor(private http: HttpClient) {
     this.dailyTableURL = environment.apiUrl + '/dailyTable';
+    this.tableList$.subscribe((data) => {
+      this.tableList = data;
+    });
+    this.tableNum$.subscribe((data) => {
+      this.tableNum = data;
+    });
   }
 
   private async fetchDailyTableList() {
     await this.http.get(this.dailyTableURL).subscribe((data) => {
       console.log(data);
       this.dailyTableSubject.next(data as DailyTable[]);
+      this.tableNumSubject.next((data as DailyTable[]).length);
     });
   }
 
   getTaskList() {
     return this.tableList;
+  }
+
+  getTableNum() {
+    return this.tableNum;
   }
 
   async getDailyTableNum() {

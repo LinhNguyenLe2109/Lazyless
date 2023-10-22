@@ -8,7 +8,13 @@ import { DailyTable } from 'src/app/interface/dailyTable';
   styleUrls: ['./table-list-nav.component.css'],
 })
 export class TableListNavComponent {
+  totalTableNum: number = 0;
   constructor(private dailyTableService: DailyTableService) {}
+  ngOnInit(): void {
+    this.dailyTableService.tableNum$.subscribe((data) => {
+      this.totalTableNum = data;
+    });
+  }
   createNewTable() {
     this.dailyTableService.addDailyTable();
   }
