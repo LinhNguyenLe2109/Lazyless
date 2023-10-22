@@ -1,7 +1,7 @@
 <div
   id="recordIDHere"
   class="bg-primary rounded-xl border-4 border-solid border-fifth my-3 px-4 py-5 flex justify-between items-center"
-  [ngClass]="{'border-green-500': table.completedAll === true}"
+  [ngClass]="{ 'border-green-500': table.completedAll === true }"
 >
   <div class="flex items-center cursor-pointer" (click)="openTable()">
     <mat-icon class="!h-8 !w-8 text-3xl !flex justify-center items-center"
@@ -15,8 +15,16 @@
       id="progressBar"
       class="w-7/12 h-8 bg-red-500 overflow-hidden rounded-2xl"
     >
-      <div id="progressBarFill" class="w-1/2 h-full bg-green-500 relative">
-        <span class="absolute right-0 top-1/2 -translate-y-2/4">{{table.completedRate}}%</span>
+      <div
+        id="progressBarFill"
+        class="h-full bg-green-500 relative"
+        [style.width]="progressBarWidth"
+      >
+        <span
+          class="absolute right-0 top-1/2 -translate-y-2/4"
+          [ngClass]="{ 'translate-x-full -right-3': table.completedRate < 20 }"
+          >{{ table.completedRate }}%</span
+        >
       </div>
     </div>
     <button

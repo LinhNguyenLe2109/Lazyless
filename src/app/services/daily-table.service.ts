@@ -75,7 +75,7 @@ export class DailyTableService {
 
   async deleteDailyTable(id: string) {
     const response = await this.http.delete(
-      this.dailyTableURL + '/delete' + id
+      this.dailyTableURL + '/delete/' + id
     );
     response.subscribe(async (data) => {
       await this.fetchDailyTableList();
