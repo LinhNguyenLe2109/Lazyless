@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./daily-table-record.component.css']
 })
 export class DailyTableRecordComponent {
-
+  constructor() {}
 }

@@ -41,8 +41,8 @@ export class DailyTableService {
     });
   }
 
-  async addDailyTable(table: DailyTable) {
-    const response = await this.http.post(this.dailyTableURL + '/add', table);
+  async addDailyTable() {
+    const response = await this.http.post(this.dailyTableURL + '/add', {});
     response.subscribe(async (data) => {
       await this.fetchDailyTableList();
     });
