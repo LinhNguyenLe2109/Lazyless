@@ -1,11 +1,11 @@
 <section id="dailyTableHistory" class="h-screen w-full text-white pt-10">
-    <h1 class="text-center !text-4xl font-bold">Browse table history</h1>
+    <h1 class="text-center !text-4xl !font-medium">Browse table history</h1>
     <section id="body" class="mx-10 h-full rounded-lg">
         <!-- header -->
         <app-table-list-nav></app-table-list-nav>
         <!-- body -->
         <section id="dailyTableList" class="w-full h-full">
-            <app-daily-table-record></app-daily-table-record>
+            <app-daily-table-record *ngFor="let table of tableList" [table]="table"></app-daily-table-record>
         </section>
 
     </section>

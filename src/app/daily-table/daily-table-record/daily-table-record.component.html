@@ -1,23 +1,32 @@
-<!-- completed all will update border color -->
 <div
   id="recordIDHere"
   class="bg-primary rounded-xl border-4 border-solid border-fifth my-3 px-4 py-5 flex justify-between items-center"
+  [ngClass]="{'border-green-500': table.completedAll === true}"
 >
-  <div class="flex items-center">
+  <div class="flex items-center cursor-pointer" (click)="openTable()">
     <mat-icon class="!h-8 !w-8 text-3xl !flex justify-center items-center"
       >list_alt</mat-icon
     >
-    <h2 class="!m-0">Date: 20/10/2023</h2>
+    <h2 class="!m-0">Date: {{ table.date }}</h2>
   </div>
   <div class="w-1/2 flex justify-end items-center">
+    <!-- todo -->
     <div
       id="progressBar"
       class="w-7/12 h-8 bg-red-500 overflow-hidden rounded-2xl"
     >
       <div id="progressBarFill" class="w-1/2 h-full bg-green-500 relative">
-        <span class="absolute right-0 top-1/2 -translate-y-2/4">50%</span>
+        <span class="absolute right-0 top-1/2 -translate-y-2/4">{{table.completedRate}}%</span>
       </div>
     </div>
-    <mat-icon class="ml-5">delete</mat-icon>
+    <button
+      class="bg-third text-black rounded-xl px-4 py-2 ml-5 font-semibold"
+      (click)="openTable()"
+    >
+      View
+    </button>
+    <mat-icon class="ml-5 cursor-pointer" (click)="deleteTable()"
+      >delete</mat-icon
+    >
   </div>
 </div>

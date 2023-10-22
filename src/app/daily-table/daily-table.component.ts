@@ -5,11 +5,11 @@ import { DailyTable } from '../interface/dailyTable';
 @Component({
   selector: 'app-daily-table',
   templateUrl: './daily-table.component.html',
-  styleUrls: ['./daily-table.component.css']
+  styleUrls: ['./daily-table.component.css'],
 })
 export class DailyTableComponent {
-  tableList : DailyTable[] = [];
-  constructor(private dailyTableService : DailyTableService) { }
+  tableList: DailyTable[] = [];
+  constructor(private dailyTableService: DailyTableService) {}
   ngOnInit(): void {
     this.dailyTableService.tableList$.subscribe((allTables) => {
       if (allTables.length > 0) {

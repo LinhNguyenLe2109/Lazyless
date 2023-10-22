@@ -23,6 +23,7 @@ export class DailyTableService {
     this.tableNum$.subscribe((data) => {
       this.tableNum = data;
     });
+    this.fetchDailyTableList();
   }
 
   private async fetchDailyTableList() {
