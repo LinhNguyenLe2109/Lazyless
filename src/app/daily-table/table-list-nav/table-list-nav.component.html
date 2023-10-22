@@ -1,16 +1,33 @@
-<!-- todo -->
-<section>
-  <div>
-    <span>Total tables: 100</span>
+<section class="flex justify-between items-center py-2 px-4">
+  <div id="leftSide">
+    <div>
+      <span class="font-bold text-xl">Total tables: 100</span>
+    </div>
   </div>
-  <mat-form-field class="w-64">
-    <!-- Apply Tailwind CSS classes -->
-    <input
-      matInput
-      placeholder="Search"
-      class="border rounded px-2 py-1 w-full"
-    />
-    <!-- Apply Tailwind CSS classes -->
-  </mat-form-field>
-  <button>Create</button>
+  <div id="rightSide" class="flex items-center">
+    <div class="relative mr-5">
+      <input
+        type="text"
+        placeholder="Search..."
+        class="bg-gray-200 rounded-full py-2 px-4 pl-10 w-full"
+      />
+      <!-- search icon -->
+      <div class="absolute top-0 left-0 mt-2 ml-3">
+        <svg
+          class="fill-current pointer-events-none text-gray-500 w-4 h-4"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path
+            d="M18.293 19.707l-6.271-6.271A7.5 7.5 0 1115.5 7.5a7.47 7.47 0 01-.22 1.793l6.271 6.271a1 1 0 11-1.414 1.414zM7.5 13a5.5 5.5 0 100-11 5.5 5.5 0 000 11z"
+          />
+        </svg>
+      </div>
+    </div>
+    <button
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-40"
+    >
+      Create
+    </button>
+  </div>
 </section>
