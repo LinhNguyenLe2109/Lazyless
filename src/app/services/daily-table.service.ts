@@ -49,10 +49,17 @@ export class DailyTableService {
     });
   }
 
-  async fetchDailyTableById(id: string) {
-    const response = await this.http.get(this.dailyTableURL + '/' + id);
-    response.subscribe(async (data) => {
-      return data as DailyTable;
+  // you need to return a promise, subscribe will only let you assign data, not return function
+  async fetchDailyTableById(id: string): Promise<DailyTable> {
+    return new Promise<DailyTable>((resolve, reject) => {
+      this.http.get<DailyTable>(this.dailyTableURL + '/' + id).subscribe({
+        next: (data: DailyTable) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
     });
   }
 

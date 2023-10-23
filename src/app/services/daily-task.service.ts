@@ -9,12 +9,13 @@ import { environment } from 'src/environments/environment.development';
 })
 export class DailyTaskService {
   apiData: Task[] = [];
-  newUnassignedId: number = -1;
+  validURL: string;
   // Create a BehaviorSubject to store the task list
   taskListSubject = new BehaviorSubject<Task[]>([]);
   // Expose the observable$ part of the taskList subject (read only stream)
   taskList$: Observable<Task[]> = this.taskListSubject.asObservable();
   constructor(private http: HttpClient) {
+    this.validURL = '';
     // get data from url
     this.fetchTaskList();
     this.taskList$.subscribe((data) => {
@@ -27,6 +28,10 @@ export class DailyTaskService {
       console.log(data);
       this.taskListSubject.next(data as Task[]);
     });
+  }
+
+  setURL(id: string) {
+    this.validURL = environment.apiUrl + '/' + id;
   }
 
   getTaskList() {
