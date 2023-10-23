@@ -20,8 +20,7 @@ export class DailyTableRecordComponent {
   }
 
   openTable() {
-    // this.router.navigate(['daily-table', this.table.id]);
-    console.log('open table');
+    this.router.navigate(['/dailyTable', this.table.id]);
   }
 
   deleteTable() {
