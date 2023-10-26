@@ -3,4 +3,5 @@ export interface Task {
     taskDescription: string;
     taskType: string;
     completed: boolean;
+    parentTableId: string;
 }

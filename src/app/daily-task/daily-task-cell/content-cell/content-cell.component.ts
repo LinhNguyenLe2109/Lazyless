@@ -14,18 +14,10 @@ import { Task } from 'src/app/interface/task';
   styleUrls: ['./content-cell.component.css'],
 })
 export class ContentCellComponent {
-  public taskList: Task[] = [];
   @Input() public type!: string;
+  @Input() public taskList!: Task[];
   constructor(private dailyTaskService: DailyTaskService) {}
   ngOnInit() {
-    // Subscribe to the taskList observable to get the whole list of tasks
-    this.dailyTaskService.taskList$.subscribe((allTasks) => {
-      if (allTasks.length > 0) {
-        this.taskList = allTasks.filter((x) => x.taskType == this.type);
-      } else {
-        this.taskList = [];
-      }
-    });
     console.log(this.taskList);
   }
 

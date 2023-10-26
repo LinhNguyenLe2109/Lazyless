@@ -16,26 +16,45 @@ export class DailyTaskService {
   taskList$: Observable<Task[]> = this.taskListSubject.asObservable();
   constructor(private http: HttpClient) {
     this.validURL = '';
-    // get data from url
-    this.fetchTaskList();
     this.taskList$.subscribe((data) => {
       this.apiData = data;
     });
   }
 
-  private async fetchTaskList() {
-    await this.http.get(environment.apiUrl).subscribe((data) => {
-      console.log(data);
-      this.taskListSubject.next(data as Task[]);
+  // get all tasks from the database with the table id
+  public async fetchTaskList(): Promise<Task[]> {
+    return new Promise<Task[]>((resolve, reject) => {
+      this.http.get<Task[]>(this.validURL).subscribe({
+        next: (data: Task[]) => {
+          this.taskListSubject.next(data);
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
     });
   }
 
-  setURL(id: string) {
-    this.validURL = environment.apiUrl + '/' + id;
+  setURL(tableID: string) {
+    this.validURL = environment.apiUrl + '/' + tableID;
   }
 
   getTaskList() {
     return this.apiData;
+  }
+
+  async fetchDailyTaskById(id: string): Promise<Task> {
+    return new Promise<Task>((resolve, reject) => {
+      this.http.get<Task>(this.validURL + '/task/' + id).subscribe({
+        next: (data: Task) => {
+          resolve(data);
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+    });
   }
 
   async addTask(task: string, type: string) {
