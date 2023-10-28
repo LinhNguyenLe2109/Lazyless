@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DailyTableService } from '../../services/daily-table.service';
 import { DailyTable } from 'src/app/interface/dailyTable';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-table-list-nav',
@@ -17,5 +18,9 @@ export class TableListNavComponent {
   }
   createNewTable() {
     this.dailyTableService.addDailyTable();
+  }
+
+  dateChangeHandler(type: string, event: MatDatepickerInputEvent<Date>) {
+    console.log(`${typeof event.value}`);
   }
 }

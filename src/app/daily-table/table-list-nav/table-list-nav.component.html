@@ -6,23 +6,13 @@
   </div>
   <div id="rightSide" class="flex items-center">
     <div class="relative mr-5">
-      <input
-        type="text"
-        placeholder="Search..."
-        class="bg-gray-200 rounded-full py-2 px-4 pl-10 w-full text-fifth"
-      />
-      <!-- search icon -->
-      <div class="absolute top-0 left-0 mt-2 ml-3">
-        <svg
-          class="fill-current pointer-events-none text-gray-500 w-4 h-4"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
-        >
-          <path
-            d="M18.293 19.707l-6.271-6.271A7.5 7.5 0 1115.5 7.5a7.47 7.47 0 01-.22 1.793l6.271 6.271a1 1 0 11-1.414 1.414zM7.5 13a5.5 5.5 0 100-11 5.5 5.5 0 000 11z"
-          />
-        </svg>
-      </div>
+      <mat-form-field>
+        <mat-label>Filter table</mat-label>
+        <input disabled matInput [matDatepicker]="picker" (dateChange)="dateChangeHandler('change', $event)">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
     </div>
     <button
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg w-40"

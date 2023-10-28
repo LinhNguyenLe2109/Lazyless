@@ -9,20 +9,26 @@ import { MatInputModule } from '@angular/material/input';
 import { DailyTableRoutingModule } from './daily-table-routing.module';
 import { DailyTaskComponent } from '../daily-task/daily-task.component';
 import { DailyTaskCellModule } from '../daily-task/daily-task-cell/daily-task-cell.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     DailyTableComponent,
     DailyTableRecordComponent,
     TableListNavComponent,
-    DailyTaskComponent
+    DailyTaskComponent,
   ],
   imports: [
     CommonModule,
     MatIconModule,
     MatInputModule,
     DailyTableRoutingModule,
-    DailyTaskCellModule
+    DailyTaskCellModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [DailyTableService],
   exports: [DailyTableComponent],
