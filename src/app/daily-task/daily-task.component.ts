@@ -77,10 +77,6 @@ export class DailyTaskComponent {
           this.UNIList.push(task);
         }
       }
-      console.log(this.UIList);
-      console.log(this.NUIList);
-      console.log(this.NUNIList);
-      console.log(this.UNIList);
     });
     return;
   }

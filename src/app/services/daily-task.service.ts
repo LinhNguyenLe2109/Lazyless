@@ -33,7 +33,6 @@ export class DailyTaskService {
         next: (data: Task[]) => {
           // Update data on the subject for dynamic updates
           this.taskListSubject.next(data);
-          console.log(data);
           // return data
           resolve(data);
         },
@@ -113,8 +112,6 @@ export class DailyTaskService {
     const body = {
       completed: completed,
     };
-
-    console.log(body);
 
     const response = this.http.put(
       this.validURL + '/updateTask/' + taskID,

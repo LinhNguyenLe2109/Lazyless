@@ -21,6 +21,6 @@ export class TableListNavComponent {
   }
 
   dateChangeHandler(type: string, event: MatDatepickerInputEvent<Date>) {
-    console.log(`${typeof event.value}`);
+    console.log(`Todo: filter table based on date ${typeof event.value}`);
   }
 }
