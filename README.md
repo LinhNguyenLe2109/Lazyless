@@ -23,3 +23,11 @@ This project is created to improve my time management skill and to learn Angular
 
 ## Others
 - [Color Palette](https://coolors.co/0b132b-1c2541-3a506b-5bc0be-6fffe9)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Angular](https://angular.io/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [Express](https://expressjs.com/)
+- [Node.js](https://nodejs.org/en/)
+- [Font Awesome](https://fontawesome.com/)
+- [Font Awesome Angular](https://github.com/FortAwesome/angular-fontawesome/blob/HEAD/docs/usage/features.md)
