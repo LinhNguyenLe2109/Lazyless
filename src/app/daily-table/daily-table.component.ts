@@ -17,7 +17,6 @@ export class DailyTableComponent {
       } else {
         this.tableList = [];
       }
-      console.log(this.tableList);
     });
   }
 }

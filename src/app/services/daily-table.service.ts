@@ -28,7 +28,6 @@ export class DailyTableService {
 
   private async fetchDailyTableList() {
     await this.http.get(this.dailyTableURL).subscribe((data) => {
-      console.log(data);
       this.dailyTableSubject.next(data as DailyTable[]);
       this.tableNumSubject.next((data as DailyTable[]).length);
     });

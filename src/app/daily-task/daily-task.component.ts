@@ -65,6 +65,7 @@ export class DailyTaskComponent {
     await this.dailyTaskService.fetchTaskList();
     this.dailyTaskService.taskList$.subscribe((data) => {
       this.taskList = data;
+      this.resetTaskList();
       for (let task of this.taskList) {
         if (task.taskType === this.UI) {
           this.UIList.push(task);
@@ -76,7 +77,20 @@ export class DailyTaskComponent {
           this.UNIList.push(task);
         }
       }
+      console.log(this.UIList);
+      console.log(this.NUIList);
+      console.log(this.NUNIList);
+      console.log(this.UNIList);
     });
     return;
+  }
+
+
+  // reset all task lists
+  resetTaskList() {
+    this.UIList = [];
+    this.NUIList = [];
+    this.NUNIList = [];
+    this.UNIList = [];
   }
 }

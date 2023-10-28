@@ -3,6 +3,7 @@ import { Task } from '../interface/task';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
+import { DailyTableService } from './daily-table.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +11,15 @@ import { environment } from 'src/environments/environment.development';
 export class DailyTaskService {
   apiData: Task[] = [];
   validURL: string;
+  tableID: string = '';
   // Create a BehaviorSubject to store the task list
   taskListSubject = new BehaviorSubject<Task[]>([]);
   // Expose the observable$ part of the taskList subject (read only stream)
   taskList$: Observable<Task[]> = this.taskListSubject.asObservable();
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private dailyTableService: DailyTableService
+  ) {
     this.validURL = '';
     this.taskList$.subscribe((data) => {
       this.apiData = data;
@@ -28,6 +33,7 @@ export class DailyTaskService {
         next: (data: Task[]) => {
           // Update data on the subject for dynamic updates
           this.taskListSubject.next(data);
+          console.log(data);
           // return data
           resolve(data);
         },
@@ -39,7 +45,9 @@ export class DailyTaskService {
   }
 
   setURL(tableID: string) {
-    this.validURL = environment.apiUrl + '/' + tableID +"/dailyTask";
+    this.tableID = tableID;
+    this.validURL =
+      environment.apiUrl + '/dailyTable/' + tableID + '/dailyTask';
   }
 
   getTaskList() {
@@ -69,11 +77,18 @@ export class DailyTaskService {
       taskType: type,
     };
 
-    const response = await this.http.post(this.validURL + '/addTask', body, {
-      headers: headers,
-    });
+    // add the task to the database
+    const addTaskResponse = await this.http.post<Task>(
+      this.validURL + '/addTask',
+      body,
+      {
+        headers: headers,
+      }
+    );
     // you need to subscribe to the response to initialize the call process
-    response.subscribe(async (data) => {
+    addTaskResponse.subscribe(async (data: Task) => {
+      // update the task list for the table
+      await this.dailyTableService.addTaskIdToDailyTable(this.tableID, data.id);
       await this.fetchTaskList();
     });
   }
