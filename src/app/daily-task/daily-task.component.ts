@@ -26,6 +26,8 @@ export class DailyTaskComponent {
   NUIList: Task[] = [];
   NUNIList: Task[] = [];
   UNIList: Task[] = [];
+
+  taskList: Task[] = [];
   constructor(
     private route: ActivatedRoute,
     private dailyTableService: DailyTableService,
@@ -60,18 +62,21 @@ export class DailyTaskComponent {
     if (taskIdList.length === 0) {
       return;
     }
-    let taskList: Task[] = await this.dailyTaskService.fetchTaskList();
-    for (let task of taskList) {
-      if (task.taskType === this.UI) {
-        this.UIList.push(task);
-      } else if (task.taskType === this.NUI) {
-        this.NUIList.push(task);
-      } else if (task.taskType === this.NUNI) {
-        this.NUNIList.push(task);
-      } else if (task.taskType === this.UNI) {
-        this.UNIList.push(task);
+    await this.dailyTaskService.fetchTaskList();
+    this.dailyTaskService.taskList$.subscribe((data) => {
+      this.taskList = data;
+      for (let task of this.taskList) {
+        if (task.taskType === this.UI) {
+          this.UIList.push(task);
+        } else if (task.taskType === this.NUI) {
+          this.NUIList.push(task);
+        } else if (task.taskType === this.NUNI) {
+          this.NUNIList.push(task);
+        } else if (task.taskType === this.UNI) {
+          this.UNIList.push(task);
+        }
       }
-    }
+    });
     return;
   }
 }

@@ -26,7 +26,9 @@ export class DailyTaskService {
     return new Promise<Task[]>((resolve, reject) => {
       this.http.get<Task[]>(this.validURL).subscribe({
         next: (data: Task[]) => {
+          // Update data on the subject for dynamic updates
           this.taskListSubject.next(data);
+          // return data
           resolve(data);
         },
         error: (err) => {
@@ -37,7 +39,7 @@ export class DailyTaskService {
   }
 
   setURL(tableID: string) {
-    this.validURL = environment.apiUrl + '/' + tableID;
+    this.validURL = environment.apiUrl + '/' + tableID +"/dailyTask";
   }
 
   getTaskList() {
@@ -67,11 +69,9 @@ export class DailyTaskService {
       taskType: type,
     };
 
-    const response = await this.http.post(
-      environment.apiUrl + '/addTask',
-      body,
-      { headers: headers }
-    );
+    const response = await this.http.post(this.validURL + '/addTask', body, {
+      headers: headers,
+    });
     // you need to subscribe to the response to initialize the call process
     response.subscribe(async (data) => {
       await this.fetchTaskList();
@@ -81,7 +81,7 @@ export class DailyTaskService {
   removeTask(id: string) {
     // this.taskList = this.taskList.filter((x) => x.id !== id);
     // this.taskListSubject.next(this.taskList);
-    const response = this.http.delete(environment.apiUrl + '/deleteTask/' + id);
+    const response = this.http.delete(this.validURL + '/deleteTask/' + id);
     response.subscribe(async (data) => {
       await this.fetchTaskList();
     });
@@ -102,7 +102,7 @@ export class DailyTaskService {
     console.log(body);
 
     const response = this.http.put(
-      environment.apiUrl + '/updateTask/' + taskID,
+      this.validURL + '/updateTask/' + taskID,
       body,
       { headers: headers }
     );
