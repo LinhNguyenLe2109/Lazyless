@@ -10,16 +10,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { DailyTableModule } from './daily-table/daily-table.module';
 import { ContactComponent } from './contact/contact.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, HomeComponent, ContactComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    HomeComponent,
+    ContactComponent,
+    LoginComponent,
+    RegisterComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     DailyTableModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
   ],
   providers: [DailyTaskService],
   bootstrap: [AppComponent],

@@ -101,10 +101,6 @@ export class DailyTaskService {
     });
   }
 
-  // getUserID() {
-  //   return this.testData.userId;
-  // }
-
   updateTaskStatus(taskID: string, completed: boolean) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

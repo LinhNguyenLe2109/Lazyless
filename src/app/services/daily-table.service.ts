@@ -33,7 +33,7 @@ export class DailyTableService {
     });
   }
 
-  getTaskList() {
+  getTableList() {
     return this.tableList;
   }
 
