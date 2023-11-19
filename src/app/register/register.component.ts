@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  constructor(private authService: AuthService, private router: Router) {}
   registerForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -17,8 +20,26 @@ export class RegisterComponent {
 
   onSubmit() {
     this.submitButtonClicked = true;
+    // Check if passwords match
     this.checkMatchingPasswords();
-    if (this.registerForm.invalid) {
+    // Check if the form is valid
+    if (!this.registerForm.invalid) {
+      // Get the username and password from the form
+      const username = this.registerForm.get('username')?.value;
+      const password = this.registerForm.get('password')?.value;
+      // If there is a username and password and if they are string, try to register
+      if (username && password) {
+        // Set the submit button to false
+        this.submitButtonClicked = false;
+        // Register the user
+        this.authService.register(username, password);
+        // If the user is registered, authenticate and redirect to home page
+        if (this.authService.checkIfRegistered()) {
+          this.authService.resetIsRegistered();
+          this.authService.authenticate(username, password);
+          this.router.navigate(['/']);
+        }
+      }
     } else {
     }
   }
