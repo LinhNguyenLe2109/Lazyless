@@ -18,7 +18,7 @@ export class RegisterComponent {
 
   submitButtonClicked = false;
 
-  onSubmit() {
+  async onSubmit() {
     this.submitButtonClicked = true;
     // Check if passwords match
     this.checkMatchingPasswords();
@@ -32,11 +32,11 @@ export class RegisterComponent {
         // Set the submit button to false
         this.submitButtonClicked = false;
         // Register the user
-        this.authService.register(username, password);
+        await this.authService.register(username, password);
         // If the user is registered, authenticate and redirect to home page
         if (this.authService.checkIfRegistered()) {
           this.authService.resetIsRegistered();
-          this.authService.authenticate(username, password);
+          await this.authService.authenticate(username, password);
           this.router.navigate(['/']);
         }
       }
