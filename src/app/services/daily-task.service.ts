@@ -29,17 +29,23 @@ export class DailyTaskService {
   // get all tasks from the database with the table id
   public async fetchTaskList(): Promise<Task[]> {
     return new Promise<Task[]>((resolve, reject) => {
-      this.http.get<Task[]>(this.validURL).subscribe({
-        next: (data: Task[]) => {
-          // Update data on the subject for dynamic updates
-          this.taskListSubject.next(data);
-          // return data
-          resolve(data);
-        },
-        error: (err) => {
-          reject(err);
-        },
-      });
+      this.http
+        .get<Task[]>(this.validURL, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+          },
+        })
+        .subscribe({
+          next: (data: Task[]) => {
+            // Update data on the subject for dynamic updates
+            this.taskListSubject.next(data);
+            // return data
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
     });
   }
 
@@ -55,20 +61,27 @@ export class DailyTaskService {
 
   async fetchDailyTaskById(id: string): Promise<Task> {
     return new Promise<Task>((resolve, reject) => {
-      this.http.get<Task>(this.validURL + '/task/' + id).subscribe({
-        next: (data: Task) => {
-          resolve(data);
-        },
-        error: (err) => {
-          reject(err);
-        },
-      });
+      this.http
+        .get<Task>(this.validURL + '/task/' + id, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+          },
+        })
+        .subscribe({
+          next: (data: Task) => {
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
     });
   }
 
   async addTask(task: string, type: string) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('access_token'),
     });
 
     const body = {
@@ -95,7 +108,11 @@ export class DailyTaskService {
   removeTask(id: string) {
     // this.taskList = this.taskList.filter((x) => x.id !== id);
     // this.taskListSubject.next(this.taskList);
-    const response = this.http.delete(this.validURL + '/deleteTask/' + id);
+    const response = this.http.delete(this.validURL + '/deleteTask/' + id, {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
     response.subscribe(async (data) => {
       await this.fetchTaskList();
     });
@@ -104,6 +121,7 @@ export class DailyTaskService {
   updateTaskStatus(taskID: string, completed: boolean) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + localStorage.getItem('access_token'),
     });
     const body = {
       completed: completed,

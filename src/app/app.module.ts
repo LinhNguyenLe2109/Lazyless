@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './utils/nav-bar/nav-bar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
-import { DailyTaskService } from './services/daily-task.service';
 import { HttpClientModule } from '@angular/common/http';
 import { DailyTableModule } from './daily-table/daily-table.module';
 import { ContactComponent } from './contact/contact.component';
@@ -13,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { RegisterComponent } from './register/register.component';
     FontAwesomeModule,
     ReactiveFormsModule,
   ],
-  providers: [DailyTaskService],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

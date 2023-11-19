@@ -27,10 +27,16 @@ export class DailyTableService {
   }
 
   private async fetchDailyTableList() {
-    await this.http.get(this.dailyTableURL).subscribe((data) => {
-      this.dailyTableSubject.next(data as DailyTable[]);
-      this.tableNumSubject.next((data as DailyTable[]).length);
-    });
+    await this.http
+      .get(this.dailyTableURL, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+        },
+      })
+      .subscribe((data) => {
+        this.dailyTableSubject.next(data as DailyTable[]);
+        this.tableNumSubject.next((data as DailyTable[]).length);
+      });
   }
 
   getTableList() {
@@ -42,7 +48,11 @@ export class DailyTableService {
   }
 
   async getDailyTableNum() {
-    const response = await this.http.get(this.dailyTableURL + '/count');
+    const response = await this.http.get(this.dailyTableURL + '/count', {
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+      },
+    });
     response.subscribe(async (data) => {
       return data as number;
     });
@@ -51,19 +61,33 @@ export class DailyTableService {
   // you need to return a promise, subscribe will only let you assign data, not return function
   async fetchDailyTableById(id: string): Promise<DailyTable> {
     return new Promise<DailyTable>((resolve, reject) => {
-      this.http.get<DailyTable>(this.dailyTableURL + '/' + id).subscribe({
-        next: (data: DailyTable) => {
-          resolve(data);
-        },
-        error: (err) => {
-          reject(err);
-        },
-      });
+      this.http
+        .get<DailyTable>(this.dailyTableURL + '/' + id, {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+          },
+        })
+        .subscribe({
+          next: (data: DailyTable) => {
+            resolve(data);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
     });
   }
 
   async addDailyTable() {
-    const response = await this.http.post(this.dailyTableURL + '/add', {});
+    const response = await this.http.post(
+      this.dailyTableURL + '/add',
+      {},
+      {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+        },
+      }
+    );
     response.subscribe(async (data) => {
       await this.fetchDailyTableList();
     });
@@ -72,7 +96,12 @@ export class DailyTableService {
   async addTaskIdToDailyTable(tableId: string, taskId: string) {
     const response = await this.http.put(
       this.dailyTableURL + '/' + tableId + '/addTask/' + tableId,
-      taskId
+      taskId,
+      {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+        },
+      }
     );
     response.subscribe(async (data) => {
       await this.fetchDailyTableList();
@@ -81,7 +110,12 @@ export class DailyTableService {
 
   async deleteDailyTable(id: string) {
     const response = await this.http.delete(
-      this.dailyTableURL + '/delete/' + id
+      this.dailyTableURL + '/delete/' + id,
+      {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+        },
+      }
     );
     response.subscribe(async (data) => {
       await this.fetchDailyTableList();
