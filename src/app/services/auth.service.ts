@@ -62,15 +62,23 @@ export class AuthService {
   }
 
   async register(userName: string, password: string) {
-    const response = await this.http.post(environment.apiUrl + '/register', {
-      userName,
-      password,
+    return new Promise<null>(async (resolve, reject) => {
+      const response = await this.http.post(environment.apiUrl + '/register', {
+        userName,
+        password,
+      });
+      response.subscribe({
+        next: (data: any) => {
+          if (data.message === 'ok') {
+            this.isRegistered = data.success;
+            resolve(null);
+          }
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+      return null;
     });
-    response.subscribe((data: any) => {
-      if (data.message === 'ok') {
-        this.isRegistered = data.success;
-      }
-    });
-    return null;
   }
 }
