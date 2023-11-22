@@ -4,7 +4,7 @@
   <div id="navLinks" class="me-10">
     <ul class="flex space-x-5">
       <li><a routerLink="/" routerLinkActive="active">Home</a></li>
-      <li *ngIf="!authService.isLoggedIn()">
+      <li *ngIf="authService.isLoggedIn()">
         <a routerLink="/dailyTable" routerLinkActive="active">Daily Table</a>
       </li>
       <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>

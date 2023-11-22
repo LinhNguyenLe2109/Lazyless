@@ -41,14 +41,24 @@ export class AuthService {
   }
 
   async authenticate(userName: string, password: string) {
-    const response = await this.http.post(environment.apiUrl + '/login', {
-      userName,
-      password,
+    return new Promise<null>(async (resolve, reject) => {
+      const response = await this.http.post(environment.apiUrl + '/login', {
+        userName,
+        password,
+      });
+      response.subscribe({
+        next: (data: any) => {
+          if (data.message === 'ok') {
+            this.setToken(data.token);
+            resolve(null);
+          }
+        },
+        error: (err) => {
+          reject(err);
+        },
+      });
+      return null;
     });
-    response.subscribe((data: any) => {
-      this.setToken(data.token);
-    });
-    return null;
   }
 
   async register(userName: string, password: string) {

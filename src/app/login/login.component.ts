@@ -26,7 +26,6 @@ export class LoginComponent {
       const password = this.loginForm.get('password')?.value;
       // If there is a username and password and if they are string, try to authenticate
       if (username && password) {
-        console.log('valid form');
         // Set the submit button to false
         this.submitButtonClicked = false;
         // Authenticate the user
