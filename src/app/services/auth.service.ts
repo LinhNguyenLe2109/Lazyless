@@ -40,9 +40,9 @@ export class AuthService {
     this.removeToken();
   }
 
-  async authenticate(username: string, password: string) {
+  async authenticate(userName: string, password: string) {
     const response = await this.http.post(environment.apiUrl + '/login', {
-      username,
+      userName,
       password,
     });
     response.subscribe((data: any) => {
@@ -51,9 +51,9 @@ export class AuthService {
     return null;
   }
 
-  async register(username: string, password: string) {
+  async register(userName: string, password: string) {
     const response = await this.http.post(environment.apiUrl + '/register', {
-      username,
+      userName,
       password,
     });
     response.subscribe((data: any) => {
