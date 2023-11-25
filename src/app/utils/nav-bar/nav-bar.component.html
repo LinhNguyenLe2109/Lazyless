@@ -7,6 +7,9 @@
       <li *ngIf="authService.isLoggedIn()">
         <a routerLink="/dailyTable" routerLinkActive="active">Daily Table</a>
       </li>
+      <li *ngIf="authService.isLoggedIn()">
+        <a routerLink="/dailyLog" routerLinkActive="active">Daily Log</a>
+      </li>
       <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
       <li *ngIf="!authService.isLoggedIn()">
         <a routerLink="/login" routerLinkActive="active">Log in</a>
