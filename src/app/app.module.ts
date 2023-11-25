@@ -14,7 +14,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './services/auth.service';
 import { DailyLogModule } from './daily-log/daily-log.module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +21,7 @@ import { DailyLogModule } from './daily-log/daily-log.module';
     HomeComponent,
     ContactComponent,
     LoginComponent,
-    RegisterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
