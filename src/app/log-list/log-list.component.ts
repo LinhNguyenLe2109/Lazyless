@@ -5,15 +5,15 @@ import { DailyLogService } from '../services/daily-log.service';
 @Component({
   selector: 'app-log-list',
   templateUrl: './log-list.component.html',
-  styleUrls: ['./log-list.component.css']
+  styleUrls: ['./log-list.component.css'],
 })
 export class LogListComponent {
   logs: DailyLog[] = [];
-  constructor(private dailyLogService: DailyLogService){
+  constructor(private dailyLogService: DailyLogService) {}
 
-  }
-
-  async ngOnInit(){
-    this.logs = await this.dailyLogService.getAllDailyLogs();
+  ngOnInit() {
+    this.dailyLogService.logs$.subscribe((data) => {
+      this.logs = data as DailyLog[];
+    });
   }
 }

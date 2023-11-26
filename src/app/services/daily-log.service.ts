@@ -3,16 +3,21 @@ import { DailyLog } from '../interface/dailyLog';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { DailyLogTask } from '../interface/dailyLogTask';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DailyLogService {
   dailyLogURL: string = environment.apiUrl + '/dailyLog';
+  logsSubject = new BehaviorSubject<DailyLog[]>([]);
+  logs$ = this.logsSubject.asObservable();
+  logSubject = new BehaviorSubject<DailyLog | null>(null);
+  log$ = this.logSubject.asObservable();
   constructor(private http: HttpClient) {}
 
   // GET
-  getAllDailyLogs() : Promise<DailyLog[]> {
+  getAllDailyLogs(): Promise<DailyLog[]> {
     return new Promise((resolve, reject) => {
       this.http
         .get(this.dailyLogURL, {
@@ -22,6 +27,8 @@ export class DailyLogService {
         })
         .subscribe({
           next: (data) => {
+            // todo
+            this.logsSubject.next(data as DailyLog[]);
             resolve(data as DailyLog[]);
           },
           error: (err) => {
@@ -41,6 +48,7 @@ export class DailyLogService {
         })
         .subscribe({
           next: (data) => {
+            this.logSubject.next(data as DailyLog);
             resolve(data as DailyLog);
           },
           error: (err) => {
@@ -92,7 +100,7 @@ export class DailyLogService {
 
   // Update
 
-  async updateDailyLogTask(id: string, task: DailyLogTask){
+  async updateDailyLogTask(id: string, task: DailyLogTask) {
     let body: DailyLogTask = {
       id: task.id,
       taskName: task.taskName,

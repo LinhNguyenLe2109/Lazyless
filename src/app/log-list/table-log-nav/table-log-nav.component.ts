@@ -12,13 +12,12 @@ export class TableLogNavComponent {
   dailyLogTables: DailyLog[] = [];
   constructor(private dailyLogService: DailyLogService) {}
   ngOnInit(): void {
-    this.dailyLogService.getAllDailyLogs().then((data) => {
+    this.dailyLogService.logs$.subscribe((data) => {
       this.dailyLogTables = data as DailyLog[];
-      console.log(this.dailyLogTables);
     });
   }
-  createNewTable() {
-    console.log("todo after log record is finished")
+  async createNewTable() {
+    await this.dailyLogService.addNewDailyLog();
   }
 
   dateChangeHandler(type: string, event: MatDatepickerInputEvent<Date>) {
