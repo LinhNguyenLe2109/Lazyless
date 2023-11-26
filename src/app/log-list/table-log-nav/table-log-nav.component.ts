@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { DailyTableService } from '../../services/daily-table.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { DailyLog } from 'src/app/interface/dailyLog';
+import { DailyLogService } from 'src/app/services/daily-log.service';
 
 @Component({
   selector: 'app-table-log-nav',
@@ -8,15 +9,16 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./table-log-nav.component.css'],
 })
 export class TableLogNavComponent {
-  totalTableNum: number = 0;
-  constructor(private dailyTableService: DailyTableService) {}
+  dailyLogTables: DailyLog[] = [];
+  constructor(private dailyLogService: DailyLogService) {}
   ngOnInit(): void {
-    this.dailyTableService.tableNum$.subscribe((data) => {
-      this.totalTableNum = data;
+    this.dailyLogService.getAllDailyLogs().then((data) => {
+      this.dailyLogTables = data as DailyLog[];
+      console.log(this.dailyLogTables);
     });
   }
   createNewTable() {
-    this.dailyTableService.addDailyTable();
+    console.log("todo after log record is finished")
   }
 
   dateChangeHandler(type: string, event: MatDatepickerInputEvent<Date>) {
