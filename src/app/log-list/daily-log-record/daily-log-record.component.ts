@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-// import { DailyLog } from 'src/app/interface/dailyLog';
+import { DailyLog } from 'src/app/interface/dailyLog';
 import { Router } from '@angular/router';
-// import { DailyLogService } from 'src/app/services/daily-log.service';
+import { DailyLogService } from 'src/app/services/daily-log.service';
 
 @Component({
   selector: 'app-daily-log-record',
@@ -9,21 +9,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./daily-log-record.component.css'],
 })
 export class DailyLogRecordComponent {
-  // @Input() log!: DailyLog;
+  @Input() table!: DailyLog;
   public progressBarWidth: string = '0%';
   constructor(
     private router: Router,
-    // private dailyLogService: DailyLogService
+    private dailyLogService: DailyLogService
   ) {}
   ngOnInit() {
     // this.progressBarWidth = this.log.completedRate + '%';
   }
 
-  openLog() {
+  openTable() {
     // this.router.navigate(['/dailyLog', this.log.id]);
   }
 
-  deleteLog() {
+  deleteTable() {
     // this.dailyLogService.deleteDailyLog(this.log.id);
   }
 }

@@ -9,6 +9,8 @@ import { DailyLogRecordComponent } from './daily-log-record/daily-log-record.com
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { DailyLogService } from '../services/daily-log.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule,
   ],
+  providers: [DailyLogService],
 })
 export class DailyLogModule {}
