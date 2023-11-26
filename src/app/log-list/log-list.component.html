@@ -5,6 +5,7 @@
         <app-table-log-nav></app-table-log-nav>
         <!-- body -->
         <section id="dailyTableList" class="w-full h-full">
+            <app-daily-log-record *ngFor="let log of logs" [log]="log"></app-daily-log-record>
         </section>
 
     </section>

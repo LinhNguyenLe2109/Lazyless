@@ -12,7 +12,7 @@ export class DailyLogService {
   constructor(private http: HttpClient) {}
 
   // GET
-  getAllDailyLogs() {
+  getAllDailyLogs() : Promise<DailyLog[]> {
     return new Promise((resolve, reject) => {
       this.http
         .get(this.dailyLogURL, {

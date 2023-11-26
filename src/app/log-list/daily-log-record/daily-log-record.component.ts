@@ -9,7 +9,7 @@ import { DailyLogService } from 'src/app/services/daily-log.service';
   styleUrls: ['./daily-log-record.component.css'],
 })
 export class DailyLogRecordComponent {
-  @Input() table!: DailyLog;
+  @Input() log!: DailyLog;
   constructor(
     private router: Router,
     private dailyLogService: DailyLogService
@@ -17,10 +17,10 @@ export class DailyLogRecordComponent {
   ngOnInit() {}
 
   openTable() {
-    this.router.navigate(['/dailyLog', this.table.id]);
+    this.router.navigate(['/dailyLog', this.log.id]);
   }
 
   async deleteTable() {
-    await this.dailyLogService.deleteDailyLog(this.table.id);
+    await this.dailyLogService.deleteDailyLog(this.log.id);
   }
 }
