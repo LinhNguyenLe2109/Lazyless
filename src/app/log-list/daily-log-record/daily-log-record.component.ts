@@ -10,20 +10,17 @@ import { DailyLogService } from 'src/app/services/daily-log.service';
 })
 export class DailyLogRecordComponent {
   @Input() table!: DailyLog;
-  public progressBarWidth: string = '0%';
   constructor(
     private router: Router,
     private dailyLogService: DailyLogService
   ) {}
-  ngOnInit() {
-    // this.progressBarWidth = this.log.completedRate + '%';
-  }
+  ngOnInit() {}
 
   openTable() {
-    // this.router.navigate(['/dailyLog', this.log.id]);
+    this.router.navigate(['/dailyLog', this.table.id]);
   }
 
-  deleteTable() {
-    // this.dailyLogService.deleteDailyLog(this.log.id);
+  async deleteTable() {
+    await this.dailyLogService.deleteDailyLog(this.table.id);
   }
 }
