@@ -13,7 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './services/auth.service';
-import { DailyLogModule } from './daily-log/daily-log.module';
+import { DailyLogModule } from './log-list/daily-log.module';
 @NgModule({
   declarations: [
     AppComponent,

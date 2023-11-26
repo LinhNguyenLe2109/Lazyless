@@ -5,7 +5,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { authGuard } from './authentication/auth.guard';
-import { DailyLogModule } from './daily-log/daily-log.module';
+import { DailyLogModule } from './log-list/daily-log.module';
 
 const routes: Routes = [
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
     path: 'dailyLog',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./daily-log/daily-log.module').then((m) => m.DailyLogModule),
+      import('./log-list/daily-log.module').then((m) => m.DailyLogModule),
   },
   {
     path: 'contact',
