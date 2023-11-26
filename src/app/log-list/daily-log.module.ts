@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { DailyLogService } from '../services/daily-log.service';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DailyLogService } from '../services/daily-log.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    MatInputModule
   ],
   providers: [DailyLogService],
 })
