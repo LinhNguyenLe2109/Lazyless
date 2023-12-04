@@ -9,13 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthService, private router: Router) {}
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
   });
 
   submitButtonClicked = false;
+  constructor(private authService: AuthService, private router: Router) {}
 
   async onSubmit() {
     this.submitButtonClicked = true;
