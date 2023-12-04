@@ -14,6 +14,8 @@ import { DailyLogService } from '../services/daily-log.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { UtilsModule } from '../utils/utils.module';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,10 @@ import { UtilsModule } from '../utils/utils.module';
     MatInputModule,
     MatTableModule,
     UtilsModule,
+    MatSelectModule,
+    ReactiveFormsModule,
   ],
+  exports: [LogListComponent],
   providers: [DailyLogService],
 })
 export class DailyLogModule {}

@@ -45,31 +45,35 @@
           <app-stop-watch></app-stop-watch>
         </div>
       </div>
-      <div id="inputContainer">
-        <!-- <mat-form-field appearance="fill">
-                <mat-label>Task</mat-label>
-                <input matInput [(ngModel)]="taskName">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Start Time</mat-label>
-                <input matInput [(ngModel)]="startTime">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>End Time</mat-label>
-                <input matInput [(ngModel)]="endTime">
-            </mat-form-field>
-            <mat-form-field appearance="fill">
-                <mat-label>Note</mat-label>
-                <input matInput [(ngModel)]="note">
-            </mat-form-field> -->
-        <div id="buttonContainer">
-          <button mat-raised-button color="primary" (click)="addLog()">
-            Add
-          </button>
-          <button mat-raised-button color="warn" (click)="deleteLog()">
-            Delete
-          </button>
-        </div>
+      <div
+        id="inputContainer"
+        class="bg-secondary text-center px-12 py-3 border-4 border-solid border-fifth rounded my-5"
+      >
+        <h2 class="text-2xl text-center text-third">Add a new task</h2>
+        <form [formGroup]="inputForm" class="flex flex-col">
+          <mat-form-field>
+            <mat-label>Task</mat-label>
+            <input matInput formControlName="taskName" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Note</mat-label>
+            <input matInput formControlName="note" />
+          </mat-form-field>
+          <div id="buttonContainer">
+            <button
+              class="bg-primary hover:bg-fifth text-white font-bold py-2.5 px-4 rounded mr-4"
+              (click)="addLog()"
+            >
+              Add
+            </button>
+            <button
+              class="bg-transparent text-white font-bold py-2 px-4 rounded border-primary border-2 hover:border-fifth hover:text-fifth"
+              (click)="deleteLog()"
+            >
+              Delete
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

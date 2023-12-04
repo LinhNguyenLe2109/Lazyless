@@ -31,7 +31,7 @@ import { DailyLogModule } from './log-list/daily-log.module';
     DailyTableModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    DailyLogModule,
+    DailyLogModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

@@ -12,13 +12,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class DailyLogRecordComponent {
   @Input() log!: DailyLog;
 
-  inputForm = new FormGroup({
-    taskName: new FormControl('', [Validators.required]),
-    startTime: new FormControl('', [Validators.required]),
-    endTime: new FormControl('', [Validators.required]),
-    note: new FormControl(''),
-  });
-
   constructor(
     private router: Router,
     private dailyLogService: DailyLogService

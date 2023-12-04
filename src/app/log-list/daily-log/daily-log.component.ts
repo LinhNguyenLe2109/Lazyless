@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DailyLogService } from 'src/app/services/daily-log.service';
 import { DailyLog } from 'src/app/interface/dailyLog';
 import { DailyLogTask } from 'src/app/interface/dailyLogTask';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-daily-log',
@@ -15,6 +15,13 @@ export class DailyLogComponent {
   log: DailyLog | null = null;
   dataSource: DailyLogTask[] = [];
   displayedColumns: string[] = ['taskName', 'startTime', 'endTime', 'note'];
+
+  inputForm = new FormGroup({
+    taskName: new FormControl('', [Validators.required]),
+    startTime: new FormControl('', [Validators.required]),
+    endTime: new FormControl('', [Validators.required]),
+    note: new FormControl(''),
+  });
   constructor(
     private route: ActivatedRoute,
     private dailyLogService: DailyLogService
