@@ -10,10 +10,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DailyLogService {
   dailyLogURL: string = environment.apiUrl + '/dailyLog';
+  // For a list of logs
   logsSubject = new BehaviorSubject<DailyLog[]>([]);
   logs$ = this.logsSubject.asObservable();
+  // For a single log
   logSubject = new BehaviorSubject<DailyLog | null>(null);
   log$ = this.logSubject.asObservable();
+  // For a list of tasks
+  tasksSubject = new BehaviorSubject<DailyLogTask[]>([]);
+  tasks$ = this.tasksSubject.asObservable();
   constructor(private http: HttpClient) {
     this.getAllDailyLogs();
   }
@@ -49,8 +54,35 @@ export class DailyLogService {
         })
         .subscribe({
           next: (data) => {
-            this.logSubject.next(data as DailyLog);
+            const log = data as DailyLog;
+            this.logSubject.next(log);
+            if (log.dailyLogTaskList.length > 0) {
+              this.getAllDailyLogTasks(id);
+            } else {
+              this.tasksSubject.next([]);
+            }
+
             resolve(data as DailyLog);
+          },
+          error: (err) => {
+            reject(err);
+          },
+        });
+    });
+  }
+
+  getAllDailyLogTasks(parentLogId: string): Promise<DailyLogTask[]> {
+    return new Promise((resolve, reject) => {
+      this.http
+        .get(this.dailyLogURL + parentLogId + '/', {
+          headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+          },
+        })
+        .subscribe({
+          next: (data) => {
+            this.tasksSubject.next(data as DailyLogTask[]);
+            resolve(data as DailyLogTask[]);
           },
           error: (err) => {
             reject(err);

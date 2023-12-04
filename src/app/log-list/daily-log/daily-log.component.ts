@@ -29,7 +29,10 @@ export class DailyLogComponent {
     this.dailyLogService.log$.subscribe((data) => {
       console.log(data);
       this.log = data as DailyLog;
-      this.dataSource = this.log.dailyLogTaskList;
+    });
+    this.dailyLogService.tasks$.subscribe((data) => {
+      console.log(data);
+      this.dataSource = data as DailyLogTask[];
     });
   }
 
