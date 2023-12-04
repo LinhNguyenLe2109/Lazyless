@@ -14,7 +14,9 @@ export class DailyLogService {
   logs$ = this.logsSubject.asObservable();
   logSubject = new BehaviorSubject<DailyLog | null>(null);
   log$ = this.logSubject.asObservable();
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getAllDailyLogs();
+  }
 
   // GET
   getAllDailyLogs(): Promise<DailyLog[]> {
@@ -27,7 +29,6 @@ export class DailyLogService {
         })
         .subscribe({
           next: (data) => {
-            // todo
             this.logsSubject.next(data as DailyLog[]);
             resolve(data as DailyLog[]);
           },
