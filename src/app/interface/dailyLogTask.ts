@@ -5,4 +5,5 @@ export interface DailyLogTask {
   endTime: Date;
   taskType: string;
   note: string;
+  parentLogId: string;
 }

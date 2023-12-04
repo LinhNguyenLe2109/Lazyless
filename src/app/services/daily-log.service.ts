@@ -76,7 +76,7 @@ export class DailyLogService {
     });
   }
 
-  async addNewTaskToDailyLog(id: string, task: DailyLogTask) {
+  async addNewTaskToDailyLog(task: DailyLogTask) {
     let body: DailyLogTask = {
       id: null,
       taskName: task.taskName,
@@ -84,9 +84,10 @@ export class DailyLogService {
       endTime: task.endTime,
       taskType: task.taskType,
       note: task.note,
+      parentLogId: task.parentLogId,
     };
     let res = await this.http.post(
-      this.dailyLogURL + '/' + id + '/addTask',
+      this.dailyLogURL + '/' + task.parentLogId + '/task/addTask',
       { body },
       {
         headers: {
@@ -95,13 +96,13 @@ export class DailyLogService {
       }
     );
     await res.subscribe(async (data) => {
-      await this.getDailyLogById(id);
+      await this.getDailyLogById(task.parentLogId);
     });
   }
 
   // Update
 
-  async updateDailyLogTask(id: string, task: DailyLogTask) {
+  async updateDailyLogTask(task: DailyLogTask) {
     let body: DailyLogTask = {
       id: task.id,
       taskName: task.taskName,
@@ -109,9 +110,10 @@ export class DailyLogService {
       endTime: task.endTime,
       taskType: task.taskType,
       note: task.note,
+      parentLogId: task.parentLogId,
     };
     let res = await this.http.put(
-      this.dailyLogURL + '/' + id + '/updateTask',
+      this.dailyLogURL + '/' + task.parentLogId + '/updateTask/' + task.id,
       { body },
       {
         headers: {
@@ -120,7 +122,7 @@ export class DailyLogService {
       }
     );
     await res.subscribe(async (data) => {
-      await this.getDailyLogById(id);
+      await this.getDailyLogById(task.parentLogId);
     });
   }
 
