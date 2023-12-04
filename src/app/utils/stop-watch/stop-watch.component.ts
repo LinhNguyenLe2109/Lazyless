@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-stop-watch',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./stop-watch.component.css'],
 })
 export class StopWatchComponent {
+  @Input() showTitle: boolean = true;
   mm = 0;
   ss = 0;
   ms = 0;
@@ -35,5 +36,13 @@ export class StopWatchComponent {
 
   format(num: number) {
     return (num + '').length === 1 ? '0' + num : num + '';
+  }
+
+  reset() {
+    this.mm = 0;
+    this.ss = 0;
+    this.ms = 0;
+    this.isRunning = false;
+    clearInterval(this.timerId);
   }
 }
