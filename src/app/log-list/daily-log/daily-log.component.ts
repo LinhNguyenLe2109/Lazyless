@@ -4,6 +4,7 @@ import { DailyLogService } from 'src/app/services/daily-log.service';
 import { DailyLog } from 'src/app/interface/dailyLog';
 import { DailyLogTask } from 'src/app/interface/dailyLogTask';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { min } from 'rxjs';
 
 @Component({
   selector: 'app-daily-log',
@@ -15,9 +16,12 @@ export class DailyLogComponent {
   log: DailyLog | null = null;
   dataSource: DailyLogTask[] = [];
   displayedColumns: string[] = ['taskName', 'startTime', 'endTime', 'note'];
+  taskTypes: string[] = ['Work', 'Study', 'Exercise', 'Unnecessary', 'Random'];
+  submitted = false;
 
   inputForm = new FormGroup({
     taskName: new FormControl('', [Validators.required]),
+    taskType: new FormControl('', [Validators.required]),
     startTime: new FormControl('', [Validators.required]),
     endTime: new FormControl('', [Validators.required]),
     note: new FormControl(''),
@@ -43,14 +47,72 @@ export class DailyLogComponent {
     });
   }
 
-  test() {
-    console.log(this.log);
+  async addLog() {
+    this.submitted = true;
+    if (!this.inputForm.invalid && this.checkValue()) {
+      console.log(this.inputForm.value);
+      this.inputForm.get('endTime')?.setErrors({ tooSmall: false });
+      let startTime = this.updateTime(this.inputForm.get('startTime')?.value);
+      let endTime = this.updateTime(this.inputForm.get('endTime')?.value);
+      let newTask: DailyLogTask = {
+        id: null,
+        taskName: this.inputForm.get('taskName')?.value ?? '',
+        taskType: this.inputForm.get('taskType')?.value ?? '',
+        startTime: startTime ?? new Date(),
+        endTime: endTime ?? new Date(),
+        note: this.inputForm.get('note')?.value ?? '',
+        parentLogId: this.logID ?? '',
+      };
+      console.log(newTask);
+      await this.dailyLogService.addNewTaskToDailyLog(newTask);
+      this.inputForm.reset();
+
+      return;
+    }
+  }
+  resetLog() {
+    this.inputForm.reset();
+    this.submitted = false;
   }
 
-  addLog() {
-    console.log('add log');
+  updateTime(time: string | null | undefined): Date | null {
+    if (!time) return null;
+    let date = new Date(this.log?.date ?? new Date());
+    let hour = parseInt(time.split(':')[0]);
+    let minute = parseInt(time.split(':')[1]);
+    if (date) {
+      date.setHours(hour);
+      date.setMinutes(minute);
+      return date;
+    }
+    return null;
   }
-  deleteLog() {
-    console.log('delete log');
+
+  checkValue() {
+    let valid = true;
+    if (this.inputForm.get('taskName')?.invalid) {
+      valid = false;
+    }
+    if (this.inputForm.get('taskType')?.invalid) {
+      valid = false;
+    }
+    if (this.inputForm.get('startTime')?.invalid) {
+      valid = false;
+    }
+    if (this.inputForm.get('endTime')?.invalid) {
+      valid = false;
+    }
+    const startTime = new Date(
+      '2000-01-01 ' + !this.inputForm.get('startTime')!.value
+    );
+    const endTime = new Date(
+      '2000-01-01 ' + !this.inputForm.get('endTime')!.value
+    );
+    if (startTime.getTime() >= endTime.getTime()) {
+      valid = false;
+      this.inputForm.get('endTime')?.setErrors({ tooSmall: true });
+    }
+
+    return valid;
   }
 }

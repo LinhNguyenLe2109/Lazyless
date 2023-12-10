@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --primary: #3A506b;
-    --secondary: #448b8a;
-    --third: #6FFFE9;
-    --forth: #1C2541;
-    --fifth: #0B132B;
+:root {
+  --primary: #3a506b;
+  --secondary: #448b8a;
+  --third: #6fffe9;
+  --forth: #1c2541;
+  --fifth: #0b132b;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

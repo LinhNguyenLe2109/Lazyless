@@ -40,42 +40,104 @@
       </table>
     </div>
     <div id="utility" class="mx-auto">
+      <!-- Stopwatch -->
       <div id="stopWatch">
         <div id="stopWatchContainer">
           <app-stop-watch></app-stop-watch>
         </div>
       </div>
+      <!-- Input form for task -->
       <div
         id="inputContainer"
         class="bg-secondary text-center px-12 py-3 border-4 border-solid border-fifth rounded my-5"
       >
         <h2 class="text-2xl text-center text-third">Add a new task</h2>
-        <form [formGroup]="inputForm" class="flex flex-col">
+        <form
+          [formGroup]="inputForm"
+          class="flex flex-col"
+          (ngSubmit)="addLog()"
+          (ngReset)="resetLog()"
+        >
           <mat-form-field>
             <mat-label>Task</mat-label>
             <input matInput formControlName="taskName" />
+            <mat-error
+              *ngIf="inputForm.get('taskName')?.errors?.['required'] &&
+            (inputForm.get('taskName')?.touched ||
+            inputForm.get('taskName')?.dirty || submitted)"
+              class="font-bold"
+              >Task name is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Type</mat-label>
+            <mat-select formControlName="taskType">
+              <mat-option *ngFor="let type of taskTypes" [value]="type">{{
+                type
+              }}</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="inputForm.get('taskType')?.errors?.['required'] &&
+            (inputForm.get('taskType')?.touched ||
+            inputForm.get('taskType')?.dirty || submitted)"
+              class="font-bold"
+              >Task type is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Start Time</mat-label>
+            <input type="time" matInput formControlName="startTime" />
+            <mat-error
+              *ngIf="inputForm.get('startTime')?.errors?.['required'] &&
+            (inputForm.get('startTime')?.touched ||
+            inputForm.get('startTime')?.dirty || submitted)"
+              class="font-bold"
+              >Start time is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>End Time</mat-label>
+            <input type="time" matInput formControlName="endTime" />
+            <mat-error
+              *ngIf="inputForm.get('endTime')?.errors?.['required'] &&
+            (inputForm.get('endTime')?.touched ||
+            inputForm.get('endTime')?.dirty || submitted)"
+              class="font-bold"
+              >End time is required</mat-error
+            >
+            <mat-error
+              *ngIf="inputForm.get('endTime')?.errors?.['tooSmall'] &&
+            (inputForm.get('endTime')?.touched ||
+            inputForm.get('endTime')?.dirty || submitted)"
+              class="font-bold"
+              >End time should be larger than start time</mat-error
+            >
           </mat-form-field>
           <mat-form-field>
             <mat-label>Note</mat-label>
-            <input matInput formControlName="note" />
+            <textarea
+              matInput
+              formControlName="note"
+              placeholder="Note"
+            ></textarea>
           </mat-form-field>
+          <!-- Buttons action -->
           <div id="buttonContainer">
             <button
               class="bg-primary hover:bg-fifth text-white font-bold py-2.5 px-4 rounded mr-4"
-              (click)="addLog()"
+              type="submit"
             >
               Add
             </button>
             <button
               class="bg-transparent text-white font-bold py-2 px-4 rounded border-primary border-2 hover:border-fifth hover:text-fifth"
-              (click)="deleteLog()"
+              type="reset"
             >
-              Delete
+              Reset
             </button>
           </div>
         </form>
       </div>
     </div>
   </div>
-  <button (click)="test()">Test</button>
 </section>
