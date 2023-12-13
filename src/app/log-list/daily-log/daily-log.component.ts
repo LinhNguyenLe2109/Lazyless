@@ -38,11 +38,11 @@ export class DailyLogComponent {
     }
     // todo, update the front end
     this.dailyLogService.log$.subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.log = data as DailyLog;
     });
     this.dailyLogService.tasks$.subscribe((data) => {
-      console.log(data);
+      // console.log(data);
       this.dataSource = data as DailyLogTask[];
     });
   }

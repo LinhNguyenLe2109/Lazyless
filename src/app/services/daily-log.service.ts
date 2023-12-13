@@ -74,13 +74,14 @@ export class DailyLogService {
   getAllDailyLogTasks(parentLogId: string): Promise<DailyLogTask[]> {
     return new Promise((resolve, reject) => {
       this.http
-        .get(this.dailyLogURL + parentLogId + '/', {
+        .get(this.dailyLogURL + "/" + parentLogId + '/task', {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('access_token'),
           },
         })
         .subscribe({
           next: (data) => {
+            console.log(data);
             this.tasksSubject.next(data as DailyLogTask[]);
             resolve(data as DailyLogTask[]);
           },
@@ -120,7 +121,7 @@ export class DailyLogService {
     };
     let res = await this.http.post(
       this.dailyLogURL + '/' + task.parentLogId + '/task/addTask',
-      { body },
+      body,
       {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('access_token'),
