@@ -1,0 +1,13 @@
+<div class="flex flex-wrap">
+  <div *ngFor="let taskType of taskTypes" class="p-2 rounded-t-lg m-4" [ngClass]="{
+    '!bg-status-primary': taskType === 'Work',
+    '!bg-status-secondary': taskType === 'Study',
+    '!bg-status-third': taskType === 'Exercise',
+    '!bg-status-forth': taskType === 'Random',
+    '!bg-status-fifth': taskType === 'Unnecessary'
+  }">
+    <h4 class="!font-bold !m-0 text-center">{{ taskType }}</h4>
+    <hr class="border-black "/>
+    <p class="!m-1 text-center">{{ calculateTotalTime(taskType) }}</p>
+  </div>
+</div>

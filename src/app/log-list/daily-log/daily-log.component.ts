@@ -4,20 +4,31 @@ import { DailyLogService } from 'src/app/services/daily-log.service';
 import { DailyLog } from 'src/app/interface/dailyLog';
 import { DailyLogTask } from 'src/app/interface/dailyLogTask';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { min } from 'rxjs';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-daily-log',
   templateUrl: './daily-log.component.html',
   styleUrls: ['./daily-log.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed,void', style({ height: '0px', minHeight: '0'})),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 export class DailyLogComponent {
   logID: string | null = null;
   log: DailyLog | null = null;
   dataSource: DailyLogTask[] = [];
-  displayedColumns: string[] = ['taskName', 'startTime', 'endTime', 'note'];
+  displayedColumns: string[] = ['taskName', 'startTime', 'endTime', 'expand'];
   taskTypes: string[] = ['Work', 'Study', 'Exercise', 'Unnecessary', 'Random'];
   submitted = false;
+  expandedTask: DailyLogTask | null = null;
 
   inputForm = new FormGroup({
     taskName: new FormControl('', [Validators.required]),
@@ -38,11 +49,9 @@ export class DailyLogComponent {
     }
     // todo, update the front end
     this.dailyLogService.log$.subscribe((data) => {
-      // console.log(data);
       this.log = data as DailyLog;
     });
     this.dailyLogService.tasks$.subscribe((data) => {
-      // console.log(data);
       this.dataSource = data as DailyLogTask[];
     });
   }
@@ -50,7 +59,6 @@ export class DailyLogComponent {
   async addLog() {
     this.submitted = true;
     if (!this.inputForm.invalid && this.checkValue()) {
-      console.log(this.inputForm.value);
       this.inputForm.get('endTime')?.setErrors({ tooSmall: false });
       let startTime = this.updateTime(this.inputForm.get('startTime')?.value);
       let endTime = this.updateTime(this.inputForm.get('endTime')?.value);
@@ -63,7 +71,6 @@ export class DailyLogComponent {
         note: this.inputForm.get('note')?.value ?? '',
         parentLogId: this.logID ?? '',
       };
-      console.log(newTask);
       await this.dailyLogService.addNewTaskToDailyLog(newTask);
       this.inputForm.reset();
 

@@ -16,6 +16,8 @@ import { MatTableModule } from '@angular/material/table';
 import { UtilsModule } from '../utils/utils.module';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { SummaryTabComponent } from './summary-tab/summary-tab.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DailyLogComponent,
     TableLogNavComponent,
     DailyLogRecordComponent,
+    SummaryTabComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UtilsModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatExpansionModule
   ],
   exports: [LogListComponent],
   providers: [DailyLogService],

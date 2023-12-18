@@ -21,6 +21,17 @@ module.exports = {
         third: "var(--third)",
         forth: "var(--forth)",
         fifth: "var(--fifth)",
+
+        "text-primary": "var(--text-primary)",
+
+
+        "status-primary": "var(--status-primary)",
+        "status-secondary": "var(--status-secondary)",
+        "status-third": "var(--status-third)",
+        "status-forth": "var(--status-forth)",
+        "status-fifth": "var(--status-fifth)",
+        "status-sixth": "var(--status-sixth)",
+        "status-seventh": "var(--status-seventh)",
       },
     },
   },

@@ -32,16 +32,9 @@ export class LoginComponent {
         await this.authService.authenticate(username, password);
         // If the user is logged in, redirect to home page
         if (this.authService.isLoggedIn()) {
-          console.log('logged in');
           this.router.navigate(['/']);
-        } else {
-          console.log('not logged in');
         }
       }
-    } else {
-      console.log('invalid form');
-      console.log(this.loginForm.get('username')?.getError('required'));
-      console.log(this.loginForm.get('username')?.errors?.['required']);
     }
   }
 }

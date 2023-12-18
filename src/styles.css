@@ -8,6 +8,17 @@
   --third: #6fffe9;
   --forth: #1c2541;
   --fifth: #0b132b;
+
+  --text-primary: #f7f7ff;
+
+  /* https://coolors.co/palette/fbf8cc-fde4cf-ffcfd2-f1c0e8-cfbaf0-a3c4f3-90dbf4-8eecf5-98f5e1-b9fbc0 */
+  --status-primary: #fbf8cc;
+  --status-secondary: #fde4cf;
+  --status-third: #ffcfd2;
+  --status-forth: #f1c0e8;
+  --status-fifth: #cfbaf0;
+  --status-sixth: #a3c4f3;
+  --status-seventh: #90dbf4;
 }
 
 html,

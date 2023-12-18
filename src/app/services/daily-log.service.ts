@@ -81,7 +81,6 @@ export class DailyLogService {
         })
         .subscribe({
           next: (data) => {
-            console.log(data);
             this.tasksSubject.next(data as DailyLogTask[]);
             resolve(data as DailyLogTask[]);
           },

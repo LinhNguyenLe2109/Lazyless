@@ -1,0 +1,9 @@
+#logTable .mat-mdc-header-row{
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+#logTable .mat-mdc-row{
+    color: var(--text-primary);
+    font-weight: 400;
+}
