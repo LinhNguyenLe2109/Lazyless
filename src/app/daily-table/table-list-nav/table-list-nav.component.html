@@ -1,16 +1,24 @@
 <section class="flex justify-between items-center py-2 px-4">
   <div id="leftSide">
     <div>
-      <span class="font-bold text-xl">Total tables: {{totalTableNum}}</span>
+      <span class="font-bold text-xl">Total tables: {{ totalTableNum }}</span>
     </div>
   </div>
   <div id="rightSide" class="flex items-center">
     <div class="relative mr-5">
       <mat-form-field>
         <mat-label>Filter table</mat-label>
-        <input disabled matInput [matDatepicker]="picker" (dateChange)="dateChangeHandler('change', $event)">
+        <input
+          disabled
+          matInput
+          [matDatepicker]="picker"
+          (dateChange)="dateChangeHandler('change', $event)"
+        />
         <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
         <mat-datepicker #picker disabled="false"></mat-datepicker>
       </mat-form-field>
     </div>
