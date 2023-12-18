@@ -2,7 +2,7 @@
   <div id="navBrand" class="text-2xl font-bold ms-6">LazyLess</div>
   <div id="navIcon" class="hidden">todo</div>
   <div id="navLinks" class="me-10">
-    <ul class="flex space-x-5">
+    <ul class="space-x-5 hidden sm:flex">
       <li><a routerLink="/" routerLinkActive="active">Home</a></li>
       <li *ngIf="authService.isLoggedIn()">
         <a routerLink="/dailyTable" routerLinkActive="active">Daily Table</a>
@@ -23,5 +23,51 @@
         </li>
       </ng-container>
     </ul>
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu"
+      class="!inline-block sm:!hidden"
+    >
+      <mat-icon>view_list</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <a routerLink="/" routerLinkActive="active" mat-menu-item>Home</a>
+      <a
+        routerLink="/dailyLog"
+        routerLinkActive="active"
+        *ngIf="authService.isLoggedIn()"
+        mat-menu-item
+        >Daily Log</a
+      >
+      <a
+        routerLink="/dailyTable"
+        routerLinkActive="active"
+        mat-menu-item
+        *ngIf="authService.isLoggedIn()"
+        >Daily Table</a
+      >
+      <a routerLink="/contact" routerLinkActive="active" mat-menu-item
+        >Contact</a
+      >
+      <a
+        routerLink="/login"
+        routerLinkActive="active"
+        *ngIf="!authService.isLoggedIn()"
+        mat-menu-item
+        >Log in</a
+      >
+      <ng-container *ngIf="authService.isLoggedIn()">
+        <a routerLink="/" routerLinkActive="active" mat-menu-item>Profile</a>
+
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          (click)="logout()"
+          mat-menu-item
+          >Log out</a
+        >
+      </ng-container>
+    </mat-menu>
   </div>
 </div>

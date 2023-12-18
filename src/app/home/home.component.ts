@@ -15,7 +15,7 @@ import { Component } from '@angular/core';
         </p>
         <button
           routerLink="/dailyTable"
-          class="bg-fifth text-third px-6 py-3 rounded-lg"
+          class="bg-fifth text-third px-6 py-3 rounded-lg mb-3"
         >
           Let's start
         </button>

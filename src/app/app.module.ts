@@ -14,6 +14,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './services/auth.service';
 import { DailyLogModule } from './log-list/daily-log.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,7 @@ import { DailyLogModule } from './log-list/daily-log.module';
     HomeComponent,
     ContactComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,10 @@ import { DailyLogModule } from './log-list/daily-log.module';
     DailyTableModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    DailyLogModule
+    DailyLogModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
