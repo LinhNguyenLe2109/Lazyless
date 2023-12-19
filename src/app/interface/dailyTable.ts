@@ -3,5 +3,5 @@ export interface DailyTable {
   taskIdList: [string];
   date: Date;
   completedAll: boolean;
-  completedRate: number;
+  completedTaskNum: number;
 }

@@ -11,12 +11,18 @@ import { DailyTableService } from 'src/app/services/daily-table.service';
 export class DailyTableRecordComponent {
   @Input() table!: DailyTable;
   public progressBarWidth: string = '0%';
+  public completedRate: number = 0;
   constructor(
     private router: Router,
     private dailyTableService: DailyTableService
   ) {}
+  // completedTaskNum
   ngOnInit() {
-    this.progressBarWidth = this.table.completedRate + '%';
+    this.completedRate =
+      this.table.taskIdList.length > 0
+        ? (this.table.completedTaskNum / this.table.taskIdList.length) * 100
+        : 0;
+    this.progressBarWidth = this.completedRate + '%';
   }
 
   openTable() {

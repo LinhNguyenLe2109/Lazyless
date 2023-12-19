@@ -1,6 +1,6 @@
 <div
   id="recordIDHere"
-  class="bg-primary rounded-xl border-4 border-solid border-fifth my-3 px-4 py-5 flex justify-between items-center"
+  class="bg-primary rounded-xl border-4 border-solid border-fifth my-3 px-4 py-5 flex justify-between items-center flex-wrap sm:flex-row flex-col w-10/12 mx-auto sm:w-full sm:mx-0"
   [ngClass]="{ 'border-green-500': table.completedAll === true }"
 >
   <div class="flex items-center cursor-pointer" (click)="openTable()">
@@ -9,11 +9,12 @@
     >
     <h2 class="!m-0">Date: {{ table.date | date }}</h2>
   </div>
-  <div class="w-1/2 flex justify-end items-center">
-    <!-- todo -->
+  <div
+    class="w-full sm:w-1/2 flex sm:justify-end items-center flex-col sm:flex-row h-24 sm:h-auto mt-4 sm:mt-0"
+  >
     <div
       id="progressBar"
-      class="w-7/12 h-8 bg-red-500 overflow-hidden rounded-2xl"
+      class=" min-w-[200px] w-full h-8 bg-red-500 overflow-hidden rounded-2xl"
     >
       <div
         id="progressBarFill"
@@ -22,19 +23,23 @@
       >
         <span
           class="absolute right-0 top-1/2 -translate-y-2/4"
-          [ngClass]="{ 'translate-x-full -right-3': table.completedRate < 20 }"
-          >{{ table.completedRate }}%</span
+          [ngClass]="{ 'translate-x-full -right-5': completedRate < 20 }"
+          >{{ completedRate }}%</span
         >
       </div>
     </div>
-    <button
-      class="bg-third text-black rounded-xl px-4 py-2 ml-5 font-semibold"
-      (click)="openTable()"
-    >
-      View
-    </button>
-    <mat-icon class="ml-5 cursor-pointer" (click)="deleteTable()"
-      >delete</mat-icon
-    >
+    <div class="flex items-center justify-between">
+      <button
+        class="bg-third text-black rounded-xl px-4 py-2 ml-0 mt-2 sm:mt-0 sm:ml-5 font-semibold"
+        (click)="openTable()"
+      >
+        View
+      </button>
+      <mat-icon
+        class="ml-0 sm:ml-5 mt-2 sm:mt-0 cursor-pointer"
+        (click)="deleteTable()"
+        >delete</mat-icon
+      >
+    </div>
   </div>
 </div>
