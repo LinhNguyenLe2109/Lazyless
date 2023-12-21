@@ -1,4 +1,4 @@
-<section class="h-screen w-full text-white pt-10">
+<section class="min-h-screen w-full text-white pt-10">
   <div id="introduction" class="text-center">
     <h1 class="text-6xl font-bold text-third">Daily Log</h1>
     <p class="text-secondary mt-3 italic text-lg">
@@ -27,7 +27,7 @@
         mat-table
         [dataSource]="dataSource"
         multiTemplateDataRows
-        class="!bg-secondary"
+        class="!bg-secondary sm:mb-0 mb-10"
         id="logTable"
       >
         <!--- Note that these columns can be defined in any order.
