@@ -1,9 +1,8 @@
-import { ChangeDetectorRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Task } from '../interface/task';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { DailyTableService } from './daily-table.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,10 +15,7 @@ export class DailyTaskService {
   taskListSubject = new BehaviorSubject<Task[]>([]);
   // Expose the observable$ part of the taskList subject (read only stream)
   taskList$: Observable<Task[]> = this.taskListSubject.asObservable();
-  constructor(
-    private http: HttpClient,
-    private dailyTableService: DailyTableService
-  ) {
+  constructor(private http: HttpClient) {
     this.validURL = '';
     this.taskList$.subscribe((data) => {
       this.apiData = data;
@@ -100,7 +96,6 @@ export class DailyTaskService {
     // you need to subscribe to the response to initialize the call process
     addTaskResponse.subscribe(async (data: Task) => {
       // update the task list for the table
-      await this.dailyTableService.addTaskIdToDailyTable(this.tableID, data.id);
       await this.fetchTaskList();
     });
   }

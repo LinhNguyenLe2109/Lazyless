@@ -93,21 +93,6 @@ export class DailyTableService {
     });
   }
 
-  async addTaskIdToDailyTable(tableId: string, taskId: string) {
-    const response = await this.http.put(
-      this.dailyTableURL + '/' + tableId + '/addTask/' + tableId,
-      taskId,
-      {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('access_token'),
-        },
-      }
-    );
-    response.subscribe(async (data) => {
-      await this.fetchDailyTableList();
-    });
-  }
-
   async deleteDailyTable(id: string) {
     const response = await this.http.delete(
       this.dailyTableURL + '/delete/' + id,
