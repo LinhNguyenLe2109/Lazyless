@@ -15,10 +15,12 @@ export class LoginComponent {
   });
 
   submitButtonClicked = false;
+  errorMessage: string = '';
   constructor(private authService: AuthService, private router: Router) {}
 
   async onSubmit() {
     this.submitButtonClicked = true;
+    this.errorMessage = '';
     // Check if the form is valid
     if (!this.loginForm.invalid) {
       // Get the username and password from the form
@@ -26,15 +28,28 @@ export class LoginComponent {
       const password = this.loginForm.get('password')?.value;
       // If there is a username and password and if they are string, try to authenticate
       if (username && password) {
-        // Set the submit button to false
-        this.submitButtonClicked = false;
         // Authenticate the user
-        await this.authService.authenticate(username, password);
+        try {
+          await this.authService.authenticate(username, password);
+        } catch (err) {
+          this.submitButtonClicked = false;
+        }
         // If the user is logged in, redirect to home page
         if (this.authService.isLoggedIn()) {
           this.router.navigate(['/']);
+        } else {
+          // Set the submit button to false
+          this.submitButtonClicked = false;
+          this.errorMessage = 'Invalid username or password';
         }
+      } else {
+        // Set the submit button to false
+        this.submitButtonClicked = false;
+        this.errorMessage = 'Please enter a username and password';
       }
+    } else {
+      // Set the submit button to false
+      this.submitButtonClicked = false;
     }
   }
 }
