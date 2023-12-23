@@ -66,12 +66,18 @@
         </div>
         <button
           type="submit"
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ms-auto w-full"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ms-auto w-full cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          [disabled]="submitButtonClicked"
         >
           Submit
         </button>
       </form>
     </div>
+    <mat-spinner
+      class="mx-auto mt-2"
+      diameter="30"
+      *ngIf="submitButtonClicked"
+    ></mat-spinner>
     <div class="mt-5 text-white">
       <p class="text-center mt-5">
         Already have an account?

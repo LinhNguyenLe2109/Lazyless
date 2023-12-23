@@ -29,18 +29,26 @@ export class RegisterComponent {
       const password = this.registerForm.get('password')?.value;
       // If there is a username and password and if they are string, try to register
       if (username && password) {
-        // Set the submit button to false
-        this.submitButtonClicked = false;
-        // Register the user
-        await this.authService.register(username, password);
+        try {
+          // Register the user
+          await this.authService.register(username, password);
+        } catch {
+          this.submitButtonClicked = false;
+        }
+
         // If the user is registered, authenticate and redirect to home page
         if (this.authService.checkIfRegistered()) {
           this.authService.resetIsRegistered();
           await this.authService.authenticate(username, password);
           this.router.navigate(['/']);
+        } else {
+          this.submitButtonClicked = false;
         }
+      } else {
+        this.submitButtonClicked = false;
       }
     } else {
+      this.submitButtonClicked = false;
     }
   }
 
