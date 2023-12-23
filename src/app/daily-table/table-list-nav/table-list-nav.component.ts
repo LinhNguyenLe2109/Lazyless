@@ -9,14 +9,17 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
   styleUrls: ['./table-list-nav.component.css'],
 })
 export class TableListNavComponent {
+  loading: boolean = true;
   totalTableNum: number = 0;
   constructor(private dailyTableService: DailyTableService) {}
   ngOnInit(): void {
     this.dailyTableService.tableNum$.subscribe((data) => {
       this.totalTableNum = data;
+      this.loading = false;
     });
   }
   createNewTable() {
+    this.loading = true;
     this.dailyTableService.addDailyTable();
   }
 

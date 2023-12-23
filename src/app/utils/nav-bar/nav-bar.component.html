@@ -15,7 +15,7 @@
         <a routerLink="/login" routerLinkActive="active">Log in</a>
       </li>
       <ng-container *ngIf="authService.isLoggedIn()">
-        <li><a routerLink="/" routerLinkActive="active">Profile</a></li>
+        <!-- <li><a routerLink="/" routerLinkActive="active">Profile</a></li> -->
         <li>
           <a routerLink="/" routerLinkActive="active" (click)="logout()"
             >Log out</a
@@ -58,7 +58,7 @@
         >Log in</a
       >
       <ng-container *ngIf="authService.isLoggedIn()">
-        <a routerLink="/" routerLinkActive="active" mat-menu-item>Profile</a>
+        <!-- <a routerLink="/" routerLinkActive="active" mat-menu-item>Profile</a> -->
 
         <a
           routerLink="/"
