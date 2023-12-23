@@ -14,7 +14,7 @@
   >
     <div
       id="progressBar"
-      class=" min-w-[200px] w-full h-8 bg-red-500 overflow-hidden rounded-2xl"
+      class="min-w-[200px] w-full h-8 bg-red-500 overflow-hidden rounded-2xl"
     >
       <div
         id="progressBarFill"
@@ -22,9 +22,12 @@
         [style.width]="progressBarWidth"
       >
         <span
-          class="absolute right-0 top-1/2 -translate-y-2/4"
-          [ngClass]="{ 'translate-x-full -right-7': completedRate < 20 }"
-          >{{ completedRate | number:"0.0-2" }}%</span
+          class="absolute top-1/2 -translate-y-2/4"
+          [ngClass]="{
+            'translate-x-full -right-5': completedRate < 20,
+            'right-0': completedRate >= 20
+          }"
+          >{{ completedRate | number : "0.0-2" }}%</span
         >
       </div>
     </div>
