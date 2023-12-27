@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { DailyLog } from '../interface/dailyLog';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
+// import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { DailyLogTask } from '../interface/dailyLogTask';
 import { BehaviorSubject } from 'rxjs';
 

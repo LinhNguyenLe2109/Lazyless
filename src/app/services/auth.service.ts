@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment.development';
+// import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -70,7 +71,7 @@ export class AuthService {
       response.subscribe({
         next: (data: any) => {
           if (data.message === 'ok') {
-            this.isRegistered = data.success;
+            this.isRegistered = true;
             resolve(null);
           }
         },

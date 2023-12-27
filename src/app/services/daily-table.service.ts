@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { DailyTable } from '../interface/dailyTable';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+// import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
