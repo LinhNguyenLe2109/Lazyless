@@ -89,8 +89,14 @@
               [@detailExpand]="
                 element == expandedTask ? 'expanded' : 'collapsed'
               "
+              class="flex flex-col sm:flex-row justify-between items-center sm:items-start"
             >
               <p>Note: {{ element.note == "" ? "N/A" : element.note }}</p>
+              <mat-icon
+              (click)="removeTask(element.id)"
+              class="text-red-500 cursor-pointer"
+              >delete</mat-icon
+            >
             </div>
           </td>
         </ng-container>

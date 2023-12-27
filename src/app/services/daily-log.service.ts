@@ -145,7 +145,7 @@ export class DailyLogService {
       parentLogId: task.parentLogId,
     };
     let res = await this.http.put(
-      this.dailyLogURL + '/' + task.parentLogId + '/updateTask/' + task.id,
+      this.dailyLogURL + '/' + task.parentLogId + '/task /updateTask/' + task.id,
       { body },
       {
         headers: {
@@ -173,7 +173,7 @@ export class DailyLogService {
 
   async deleteDailyLogTask(dailyLogId: string, taskId: string) {
     let res = await this.http.delete(
-      this.dailyLogURL + '/' + dailyLogId + '/deleteTask/' + taskId,
+      this.dailyLogURL + '/' + dailyLogId + '/task/deleteTask/' + taskId,
       {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('access_token'),

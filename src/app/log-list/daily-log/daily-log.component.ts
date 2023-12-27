@@ -4,7 +4,13 @@ import { DailyLogService } from 'src/app/services/daily-log.service';
 import { DailyLog } from 'src/app/interface/dailyLog';
 import { DailyLogTask } from 'src/app/interface/dailyLogTask';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-daily-log',
@@ -12,7 +18,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   styleUrls: ['./daily-log.component.css'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed,void', style({ height: '0px', minHeight: '0'})),
+      state('collapsed,void', style({ height: '0px', minHeight: '0' })),
       state('expanded', style({ height: '*' })),
       transition(
         'expanded <=> collapsed',
@@ -121,5 +127,9 @@ export class DailyLogComponent {
     }
 
     return valid;
+  }
+
+  removeTask(taskId: string) {
+    this.dailyLogService.deleteDailyLogTask(this.logID!, taskId);
   }
 }
