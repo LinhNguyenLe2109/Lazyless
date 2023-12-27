@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class StopWatchComponent {
   @Input() showTitle: boolean = true;
+  hr = 0;
   mm = 0;
   ss = 0;
   ms = 0;
@@ -27,6 +28,10 @@ export class StopWatchComponent {
           this.mm++;
           this.ss = 0;
         }
+        if (this.mm >= 60) {
+          this.hr++;
+          this.mm = 0;
+        }
       }, 10);
     } else {
       clearInterval(this.timerId);
@@ -39,6 +44,7 @@ export class StopWatchComponent {
   }
 
   reset() {
+    this.hr = 0;
     this.mm = 0;
     this.ss = 0;
     this.ms = 0;
