@@ -6,15 +6,15 @@ Sometimes I feel not so productive and time flies so fast. I want to know how I 
 This project is created to improve my time management skill and to learn Angular.
 
 ## Features
-- [ ] Log in/log out
-- [ ] Create a task
-- [ ] Edit a task
-- [ ] Delete a task
-- [ ] Mark a task as done
-- [ ] Mark a task as undone
-- [ ] Enter start and end time for a task
-- [ ] Add task to a category
-- [ ] Display graph to show time used for different categories
+- Log in/log out
+- Create a task
+- Edit a task
+- Delete a task
+- Mark a task as done
+- Mark a task as undone
+- Enter start and end time for a task
+- Add task to a category
+- Display graph to show time used for different categories
 
 ## Technologies
 - Angular
