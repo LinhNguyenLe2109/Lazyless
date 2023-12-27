@@ -1,8 +1,6 @@
 <section
   class="py-24 md:pt-32 min-h-screen mb-10"
-  style="
-    background-position: center;
-  "
+  style="background-position: center"
 >
   <div class="container px-4 mx-auto">
     <div
@@ -51,11 +49,11 @@
               formControlName="password"
             />
             <div
-            *ngIf="registerForm.get('password')?.errors?.['required'] && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty || submitButtonClicked)"
-            class="text-red-500 text-base"
-          >
-            Password is required.
-          </div>
+              *ngIf="registerForm.get('password')?.errors?.['required'] && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty || submitButtonClicked)"
+              class="text-red-500 text-base"
+            >
+              Password is required.
+            </div>
           </div>
           <div class="mb-4">
             <label class="block mb-2 text-third font-medium" for=""
