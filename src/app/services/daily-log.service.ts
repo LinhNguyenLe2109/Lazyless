@@ -56,7 +56,7 @@ export class DailyLogService {
           next: (data) => {
             const log = data as DailyLog;
             this.logSubject.next(log);
-            if (log.dailyLogTaskList.length > 0) {
+            if (log?.dailyLogTaskList.length > 0) {
               this.getAllDailyLogTasks(id);
             } else {
               this.tasksSubject.next([]);

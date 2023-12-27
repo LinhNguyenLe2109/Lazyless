@@ -1,6 +1,12 @@
-<div id="addTaskSection" class="flex justify-between flex-wrap mx-4 mb-4">
-    <input type="text" name="taskName" placeholder="Enter new task here" [(ngModel)]="task" class="text-black px-2 py-1 rounded-sm w-11/12">
-    <div id="optionList" class="flex">
-        <button id="doneButton" (click)="addTask()">Add</button>
-    </div>
+<div id="addTaskSection" class="flex justify-between items-center flex-wrap mx-4 mb-4 lg:flex-row flex-col">
+  <input
+    type="text"
+    name="taskName"
+    placeholder="Enter new task here"
+    [(ngModel)]="task"
+    class="text-black px-2 py-1 rounded-lg max-w-36 w-full"
+  />
+  <div id="optionList" class="flex lg:m-0 mt-2">
+    <button id="doneButton" (click)="addTask()">Add</button>
+  </div>
 </div>

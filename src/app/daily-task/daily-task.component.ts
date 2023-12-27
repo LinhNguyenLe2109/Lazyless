@@ -53,7 +53,7 @@ export class DailyTaskComponent {
       this.sessionId = this.table.id;
       // set the url for the daily task service
       this.dailyTaskService.setURL(this.table.id);
-      this.fetchTasks(this.table.taskIdList);
+      await this.fetchTasks(this.table.taskIdList);
     }
   }
 
