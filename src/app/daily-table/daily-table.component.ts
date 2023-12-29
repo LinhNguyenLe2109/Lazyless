@@ -11,6 +11,7 @@ export class DailyTableComponent {
   tableList: DailyTable[] = [];
   constructor(private dailyTableService: DailyTableService) {}
   ngOnInit(): void {
+    this.dailyTableService.fetchDailyTableList();
     this.dailyTableService.tableList$.subscribe((allTables) => {
       if (allTables.length > 0) {
         this.tableList = allTables;

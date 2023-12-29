@@ -29,7 +29,7 @@ export class DailyTableService {
     this.fetchDailyTableList();
   }
 
-  private async fetchDailyTableList() {
+  async fetchDailyTableList() {
     await this.http
       .get(this.dailyTableURL, {
         headers: {
