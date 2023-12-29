@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { environment } from 'src/environments/environment.development';
 import { environment } from 'src/environments/environment';
+import { DailyTableService } from './daily-table.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,7 @@ export class DailyTaskService {
   taskListSubject = new BehaviorSubject<Task[]>([]);
   // Expose the observable$ part of the taskList subject (read only stream)
   taskList$: Observable<Task[]> = this.taskListSubject.asObservable();
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private dailyTableService: DailyTableService) {
     this.validURL = '';
     this.taskList$.subscribe((data) => {
       this.apiData = data;
@@ -36,6 +37,7 @@ export class DailyTaskService {
           next: (data: Task[]) => {
             // Update data on the subject for dynamic updates
             this.taskListSubject.next(data);
+            this.dailyTableService.fetchDailyTableById(this.tableID);
             // return data
             resolve(data);
           },

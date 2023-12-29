@@ -16,6 +16,8 @@ export class DailyTableService {
   tableNum: number = 0;
   tableNumSubject = new BehaviorSubject<number>(0);
   tableNum$ = this.tableNumSubject.asObservable();
+  currentTableSubject = new BehaviorSubject<DailyTable | null>(null);
+  currentTable$ = this.currentTableSubject.asObservable();
   constructor(private http: HttpClient) {
     this.dailyTableURL = environment.apiUrl + '/dailyTable';
     this.tableList$.subscribe((data) => {
@@ -70,6 +72,7 @@ export class DailyTableService {
         })
         .subscribe({
           next: (data: DailyTable) => {
+            this.currentTableSubject.next(data);
             resolve(data);
           },
           error: (err) => {

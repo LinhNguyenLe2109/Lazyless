@@ -45,23 +45,22 @@ export class DailyTaskComponent {
     // if there is a table id, fetch the table
     if (this.tableId) {
       // Subscribe to the taskList observable to get the whole list of tasks
-      // todo
-      this.table = await this.dailyTableService.fetchDailyTableById(
-        this.tableId
-      );
-      this.currentDate = this.table.date;
-      this.sessionId = this.table.id;
-      // set the url for the daily task service
-      this.dailyTaskService.setURL(this.table.id);
-      await this.fetchTasks(this.table.taskIdList);
+      await this.dailyTableService.fetchDailyTableById(this.tableId);
+      this.dailyTableService.currentTable$.subscribe((data) => {
+        this.table = data;
+      });
+      if (this.table != null) {
+        this.currentDate = this.table.date;
+        this.sessionId = this.table.id;
+        // set the url for the daily task service
+        this.dailyTaskService.setURL(this.table.id);
+        await this.fetchTasks();
+      }
     }
   }
 
   // get all table tasks, split them into 4 section, then pass it to sub section
-  async fetchTasks(taskIdList: string[]) {
-    if (taskIdList.length === 0) {
-      return;
-    }
+  async fetchTasks() {
     await this.dailyTaskService.fetchTaskList();
     this.dailyTaskService.taskList$.subscribe((data) => {
       this.taskList = data;
@@ -80,7 +79,6 @@ export class DailyTaskComponent {
     });
     return;
   }
-
 
   // reset all task lists
   resetTaskList() {

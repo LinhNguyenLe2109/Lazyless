@@ -23,6 +23,7 @@ export class DailyTableRecordComponent {
         ? (this.table.completedTaskNum / this.table.taskIdList.length) * 100
         : 0;
     this.progressBarWidth = this.completedRate + '%';
+    console.log(this.progressBarWidth);
   }
 
   openTable() {
